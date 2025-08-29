@@ -218,7 +218,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ⭐ **Star this repository** if you found it helpful!
 
-🔗 **Live Demo**: [Your Portfolio URL Here]
+🔗 **Live Demo**: (https://kapil-iyer-portfolio.netlify.app/)
 
 📧 **Get in Touch**: k22iyer@uwaterloo.ca
 
