@@ -328,27 +328,29 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .about-image {
             border-radius: 20px;
             overflow: hidden;
             position: relative;
+            margin: 0;
         }
 
         .about-image img {
             width: 100%;
-            height: 400px;
+            height: 360px;
             object-fit: cover;
+            object-position: center top;
             border-radius: 20px;
             transition: var(--transition);
-            transform: scale(0.94); /* show more of the image to avoid edge cropping */
+            transform: scale(0.92); /* show more of the image to avoid edge cropping */
             transform-origin: center center;
         }
 
         .about-image img:hover {
-            transform: scale(0.98);
+            transform: scale(0.95);
         }
 
         /* Fallback styles if images don't load */
@@ -424,10 +426,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 3rem 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
+            display: grid;
+            gap: 2.5rem;
         }
 
         .tree-container {
@@ -437,6 +437,44 @@
             width: 100%;
             position: relative;
             align-items: stretch;
+        }
+
+        /* Flowchart rows */
+        .tree-row {
+            position: relative;
+        }
+
+        .tree-row-title {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+        }
+
+        /* Central trunk line */
+        .experience-tree::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, rgba(79,70,229,.35), rgba(16,185,129,.35));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Row connectors */
+        .tree-row::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 60%;
+            height: 2px;
+            background: rgba(255,255,255,.08);
+            top: 44px; /* under title */
+            transform: translateX(-50%);
         }
 
         .tree-node {
@@ -450,7 +488,7 @@
 
         @keyframes nodeAppear {
             to {
-                opacity: 1;
+            opacity: 1;
                 transform: scale(1) translateY(0);
             }
         }
@@ -745,14 +783,14 @@
             }
 
             .tree-node-card {
-                width: 100%;
+            width: 100%;
                 max-width: 400px;
-            }
+        }
 
             .modal-content {
                 padding: 2rem 1.5rem;
                 margin: 1rem;
-            }
+        }
         }
 
         /* Projects Section */
@@ -1414,59 +1452,62 @@
             <h2 class="section-title">Experience</h2>
             
             <div class="experience-tree">
-                <div class="tree-container">
-                    <!-- Experience Node 1 -->
-                    <div class="tree-node" data-modal="modal-1">
-                        <div class="tree-node-card">
-                            <div class="tree-node-year">2025</div>
-                            <div class="tree-node-org">UW Governance Risk Compliance Association</div>
-                            <span class="tree-node-role">VP of External Relations</span>
-                            <span class="tree-node-period">April 2025 - August 2025</span>
-                            <p class="tree-node-preview">Leading external partnerships and strategic initiatives for a premier risk management student association at the University of Waterloo, serving 100+ students.</p>
-                            <div class="tree-node-click">
-                                Click to view details <i class="fas fa-arrow-right"></i>
+                <!-- Roots row (foundational experiences) -->
+                <div class="tree-row">
+                    <div class="tree-row-title">Roots</div>
+                    <div class="tree-container">
+                        <div class="tree-node" data-modal="modal-3">
+                            <div class="tree-node-card">
+                                <div class="tree-node-year">2023</div>
+                                <div class="tree-node-org">STEAM Change Mentorship Program</div>
+                                <span class="tree-node-role">Youth Lead Mentor</span>
+                                <span class="tree-node-period">September 2023 - June 2024</span>
+                                <p class="tree-node-preview">Leading educational initiatives that combine Science, Technology, Arts, Engineering, and Mathematics for young learners.</p>
+                                <div class="tree-node-click">Click to view details <i class="fas fa-arrow-right"></i></div>
+                            </div>
+                        </div>
+                        <div class="tree-node" data-modal="modal-4">
+                            <div class="tree-node-card">
+                                <div class="tree-node-year">2023</div>
+                                <div class="tree-node-org">Code Krafters: Clarkson Coding Club</div>
+                                <span class="tree-node-role">Founder & President</span>
+                                <span class="tree-node-period">September 2023 - June 2024</span>
+                                <p class="tree-node-preview">Established and led a student-driven coding club focused on collaborative learning and creative project development.</p>
+                                <div class="tree-node-click">Click to view details <i class="fas fa-arrow-right"></i></div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Experience Node 2 -->
-                    <div class="tree-node" data-modal="modal-2">
-                        <div class="tree-node-card">
-                            <div class="tree-node-year">2025</div>
-                            <div class="tree-node-org">UW Data Science Club</div>
-                            <span class="tree-node-role">Outreach Coordinator</span>
-                            <span class="tree-node-period">September 2025 - Present</span>
-                            <p class="tree-node-preview">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon and building strategic relationships with industry leaders.</p>
-                            <div class="tree-node-click">
-                                Click to view details <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <!-- Trunk row (core experience) -->
+                <div class="tree-row">
+                    <div class="tree-row-title">Trunk</div>
+                    <div class="tree-container">
+                        <div class="tree-node" data-modal="modal-1">
+                            <div class="tree-node-card">
+                                <div class="tree-node-year">2025</div>
+                                <div class="tree-node-org">UW Governance Risk Compliance Association</div>
+                                <span class="tree-node-role">VP of External Relations</span>
+                                <span class="tree-node-period">April 2025 - August 2025</span>
+                                <p class="tree-node-preview">Leading external partnerships and strategic initiatives for a premier risk management student association at the University of Waterloo, serving 100+ students.</p>
+                                <div class="tree-node-click">Click to view details <i class="fas fa-arrow-right"></i></div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Experience Node 3 -->
-                    <div class="tree-node" data-modal="modal-3">
-                        <div class="tree-node-card">
-                            <div class="tree-node-year">2023</div>
-                            <div class="tree-node-org">STEAM Change Mentorship Program</div>
-                            <span class="tree-node-role">Youth Lead Mentor</span>
-                            <span class="tree-node-period">September 2023 - June 2024</span>
-                            <p class="tree-node-preview">Leading educational initiatives that combine Science, Technology, Arts, Engineering, and Mathematics for young learners.</p>
-                            <div class="tree-node-click">
-                                Click to view details <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience Node 4 -->
-                    <div class="tree-node" data-modal="modal-4">
-                        <div class="tree-node-card">
-                            <div class="tree-node-year">2023</div>
-                            <div class="tree-node-org">Code Krafters: Clarkson Coding Club</div>
-                            <span class="tree-node-role">Founder & President</span>
-                            <span class="tree-node-period">September 2023 - June 2024</span>
-                            <p class="tree-node-preview">Established and led a student-driven coding club focused on collaborative learning and creative project development.</p>
-                            <div class="tree-node-click">
-                                Click to view details <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <!-- Leaves row (current growth) -->
+                <div class="tree-row">
+                    <div class="tree-row-title">Branches & Leaves</div>
+                    <div class="tree-container">
+                        <div class="tree-node" data-modal="modal-2">
+                            <div class="tree-node-card">
+                                <div class="tree-node-year">2025</div>
+                                <div class="tree-node-org">UW Data Science Club</div>
+                                <span class="tree-node-role">Outreach Coordinator</span>
+                                <span class="tree-node-period">September 2025 - Present</span>
+                                <p class="tree-node-preview">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon and building strategic relationships with industry leaders.</p>
+                                <div class="tree-node-click">Click to view details <i class="fas fa-arrow-right"></i></div>
                             </div>
                         </div>
                     </div>
@@ -1483,24 +1524,24 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                <h3>UW Governance Risk Compliance Association</h3>
+                        <h3>UW Governance Risk Compliance Association</h3>
                 <span class="modal-role">VP of External Relations</span>
                 <span class="modal-period">April 2025 - August 2025</span>
             </div>
             <p class="modal-description">Leading external partnerships and strategic initiatives for a premier risk management student association at the University of Waterloo, serving 100+ students.</p>
             
             <div class="modal-achievements">
-                <h4>Key Achievements:</h4>
-                <ul>
+                            <h4>Key Achievements:</h4>
+                            <ul>
                     <li>Built and maintained partnerships with 20+ professionals in fintech, cybersecurity, and regulatory compliance to support speaker events, workshops, and mentorship programs serving 100+ students</li>
                     <li>Coordinated with government bodies (Ontario Treasury Board Secretariat), consulting firms, and fintech startups in partnership with UW Fintech including Relay Financial to host interactive networking sessions introducing students to real-world GRC and finance practices</li>
                     <li>Managed external communications including outreach emails, LinkedIn networking, and follow-ups, achieving 40% response rate through personalized stakeholder engagement strategies</li>
                     <li>Led cross-club collaboration initiatives with UW Venture, UW FinTech, and UW Data Science Club to co-host events on emerging technology risk and data governance, expanding club reach by 30%</li>
-                </ul>
-            </div>
+                            </ul>
+                        </div>
 
             <div class="modal-skills">
-                <h4>Skills & Tools Used:</h4>
+                            <h4>Skills & Tools Used:</h4>
                 <div class="modal-skill-tags">
                     <span class="modal-skill-tag">Strategic Planning</span>
                     <span class="modal-skill-tag">Partnership Development</span>
@@ -1510,11 +1551,11 @@
                     <span class="modal-skill-tag">Cross-functional Collaboration</span>
                     <span class="modal-skill-tag">Government Relations</span>
                     <span class="modal-skill-tag">B2B Communication</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
+                
     <!-- Modal 2: UW Data Science Club -->
     <div class="experience-modal" id="modal-2">
         <div class="modal-content">
@@ -1522,24 +1563,24 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                <h3>UW Data Science Club</h3>
+                        <h3>UW Data Science Club</h3>
                 <span class="modal-role">Outreach Coordinator</span>
                 <span class="modal-period">September 2025 - Present</span>
             </div>
             <p class="modal-description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon and building strategic relationships with industry leaders.</p>
             
             <div class="modal-achievements">
-                <h4>Key Achievements:</h4>
-                <ul>
+                            <h4>Key Achievements:</h4>
+                            <ul>
                     <li>Coordinate corporate partnership outreach for Canada's largest student-run data science hackathon (CxC 2026), engaging 30+ potential sponsors to secure funding and mentorship for 200+ participants</li>
                     <li>Utilized Apollo.io and professional B2B outreach tools to identify and engage target companies, achieving a 25% response rate through strategic messaging and personalized proposals</li>
                     <li>Collaborate with CxC organizing team and past sponsors (UW Math Endowment Fund, Hugging Face, Techyon) to develop sponsor activation strategies, managing communications and deliverables across 3 cross-club partnerships</li>
                     <li>Build relationships with fintech and technology companies to provide students with industry exposure, working toward confirmed partnerships for February 2026 hackathon</li>
-                </ul>
-            </div>
+                            </ul>
+                        </div>
 
             <div class="modal-skills">
-                <h4>Skills & Tools Used:</h4>
+                            <h4>Skills & Tools Used:</h4>
                 <div class="modal-skill-tags">
                     <span class="modal-skill-tag">Apollo.io</span>
                     <span class="modal-skill-tag">B2B Outreach</span>
@@ -1549,11 +1590,11 @@
                     <span class="modal-skill-tag">Event Coordination</span>
                     <span class="modal-skill-tag">Cross-functional Collaboration</span>
                     <span class="modal-skill-tag">Corporate Relations</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
+                
     <!-- Modal 3: STEAM Change -->
     <div class="experience-modal" id="modal-3">
         <div class="modal-content">
@@ -1561,24 +1602,24 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                <h3>STEAM Change Mentorship Program</h3>
+                        <h3>STEAM Change Mentorship Program</h3>
                 <span class="modal-role">Youth Lead Mentor</span>
                 <span class="modal-period">September 2023 - June 2024</span>
             </div>
             <p class="modal-description">Leading educational initiatives that combine Science, Technology, Arts, Engineering, and Mathematics for young learners.</p>
             
             <div class="modal-achievements">
-                <h4>Key Achievements:</h4>
-                <ul>
-                    <li>Mentored and led projects comprising STEAM topics for elementary and middle school students</li>
-                    <li>Developed curriculum and project-based learning activities</li>
-                    <li>Fostered creativity and problem-solving skills in young students</li>
-                    <li>Collaborated with educators to integrate STEAM concepts into classroom learning</li>
-                </ul>
-            </div>
+                            <h4>Key Achievements:</h4>
+                            <ul>
+                                <li>Mentored and led projects comprising STEAM topics for elementary and middle school students</li>
+                                <li>Developed curriculum and project-based learning activities</li>
+                                <li>Fostered creativity and problem-solving skills in young students</li>
+                                <li>Collaborated with educators to integrate STEAM concepts into classroom learning</li>
+                            </ul>
+                        </div>
 
             <div class="modal-skills">
-                <h4>Skills & Tools Used:</h4>
+                            <h4>Skills & Tools Used:</h4>
                 <div class="modal-skill-tags">
                     <span class="modal-skill-tag">Curriculum Development</span>
                     <span class="modal-skill-tag">Project-Based Learning</span>
@@ -1587,11 +1628,11 @@
                     <span class="modal-skill-tag">Google Workspace</span>
                     <span class="modal-skill-tag">Microsoft Office</span>
                     <span class="modal-skill-tag">Educational Technology</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
+                
     <!-- Modal 4: Code Krafters -->
     <div class="experience-modal" id="modal-4">
         <div class="modal-content">
@@ -1599,24 +1640,24 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                <h3>Code Krafters: Clarkson Coding Club</h3>
+                        <h3>Code Krafters: Clarkson Coding Club</h3>
                 <span class="modal-role">Founder & President</span>
                 <span class="modal-period">September 2023 - June 2024</span>
             </div>
             <p class="modal-description">Established and led a student-driven coding club focused on collaborative learning and creative project development.</p>
             
             <div class="modal-achievements">
-                <h4>Key Achievements:</h4>
-                <ul>
-                    <li>Launched a student-led coding club from concept to active organization</li>
-                    <li>Mentored students preparing for the Waterloo Canadian Computing Contest (CCC)</li>
-                    <li>Organized programming workshops and coding competitions</li>
-                    <li>Built a community of programming enthusiasts and problem-solvers</li>
-                </ul>
-            </div>
+                            <h4>Key Achievements:</h4>
+                            <ul>
+                                <li>Launched a student-led coding club from concept to active organization</li>
+                                <li>Mentored students preparing for the Waterloo Canadian Computing Contest (CCC)</li>
+                                <li>Organized programming workshops and coding competitions</li>
+                                <li>Built a community of programming enthusiasts and problem-solvers</li>
+                            </ul>
+                        </div>
 
             <div class="modal-skills">
-                <h4>Skills & Tools Used:</h4>
+                            <h4>Skills & Tools Used:</h4>
                 <div class="modal-skill-tags">
                     <span class="modal-skill-tag">Java Programming</span>
                     <span class="modal-skill-tag">GitHub</span>
@@ -1626,10 +1667,10 @@
                     <span class="modal-skill-tag">Data Structures</span>
                     <span class="modal-skill-tag">Problem Solving</span>
                     <span class="modal-skill-tag">Community Building</span>
-                </div>
-            </div>
-        </div>
-    </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
 
     <!-- Projects Section -->
     <section id="projects" class="section projects">
@@ -1697,7 +1738,7 @@
                         <span class="skill-item"><i class="fas fa-file-alt"></i> LaTeX</span>
                     </div>
                 </div>
-
+                
                 <!-- Data Science & ML -->
                 <div class="skill-category">
                     <div class="skill-header">
@@ -1717,7 +1758,7 @@
                         <span class="skill-item"><i class="fas fa-chart-area"></i> Time Series</span>
                     </div>
                 </div>
-
+                
                 <!-- Visualization & Tools -->
                 <div class="skill-category">
                     <div class="skill-header">
@@ -1737,7 +1778,7 @@
                         <span class="skill-item"><i class="fas fa-cloud"></i> Watson Studio</span>
                     </div>
                 </div>
-
+                
                 <!-- Certifications -->
                 <div class="skill-category">
                     <div class="skill-header">
@@ -1748,6 +1789,7 @@
                     </div>
                     <div class="skill-items">
                         <span class="skill-item"><i class="fas fa-university"></i> Bloomberg Spreadsheet Analysis (BQL)</span>
+                        <span class="skill-item"><i class="fas fa-chart-line"></i> Bloomberg Market Concepts (BMC)</span>
                         <span class="skill-item"><i class="fas fa-brain"></i> IBM ML and DL</span>
                         <!-- Add more certifications as you earn them -->
                     </div>
@@ -2028,10 +2070,10 @@
             
             animateElements.forEach(el => {
                 if (!el.classList.contains('tree-node')) {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(30px)';
-                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    observer.observe(el);
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
                 }
             });
         });
