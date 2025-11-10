@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Coding Club - Java CCC Prep",
+    "description": "Launched a student-led coding club to mentor students preparing for the Waterloo CCC, with an emphasis on Java and problem-solving.",
+    "tech": ["Java", "Mentorship", "Algorithms"],
+    "link": "#"
+  },
+  {
+    "title": "STEAM Change Mentorship",
+    "description": "Mentored students in STEAM projects addressing UN Sustainable Development Goals.",
+    "tech": ["Mentorship", "STEAM", "Leadership"],
+    "link": "#"
+  }
+]

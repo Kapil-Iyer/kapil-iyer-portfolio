@@ -1,0 +1,20 @@
+[build]
+  publish = "."
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Site configuration
+[build.processing]
+  skip_processing = false
+
+# Redirects for single-page app
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Site metadata
+[build.environment]
+  SITE_NAME = "Kapil Iyer Portfolio" 
