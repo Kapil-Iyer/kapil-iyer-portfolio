@@ -1,20 +1,13 @@
 [build]
-  publish = "."
-  command = ""
+  publish = ".next"
+  command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
+  SITE_NAME = "Kapil Iyer Portfolio"
 
-# Site configuration
-[build.processing]
-  skip_processing = false
-
-# Redirects for single-page app
+# Redirects for single-page apps
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Site metadata
-[build.environment]
-  SITE_NAME = "Kapil Iyer Portfolio" 
