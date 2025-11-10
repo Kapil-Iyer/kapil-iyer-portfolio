@@ -1,13 +1,7 @@
 [build]
-  publish = ".next"
-  command = "npm run build"
+  publish = "."
+  command = "echo 'Static site – no build required'"
 
 [build.environment]
   NODE_VERSION = "18"
-  SITE_NAME = "Kapil Iyer Portfolio"
-
-# Redirects for single-page apps
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
