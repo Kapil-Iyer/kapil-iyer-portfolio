@@ -343,10 +343,12 @@
             object-fit: cover;
             border-radius: 20px;
             transition: var(--transition);
+            transform: scale(0.94); /* show more of the image to avoid edge cropping */
+            transform-origin: center center;
         }
 
         .about-image img:hover {
-            transform: scale(1.02);
+            transform: scale(0.98);
         }
 
         /* Fallback styles if images don't load */
@@ -429,13 +431,12 @@
         }
 
         .tree-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             width: 100%;
             position: relative;
+            align-items: stretch;
         }
 
         .tree-node {
@@ -1359,7 +1360,13 @@
                             </div>
                             <div>
                                 <h4>Education</h4>
-                                <p>BMath Honors Co-op</p>
+                                <p>University of Waterloo — Bachelor of Honors Mathematics (Co-op)</p>
+                                <p>Specialization: Applied Math — Scientific Machine Learning</p>
+                                <p>Minor: Statistics and Computing</p>
+                                <p style="margin-top: .4rem; color: var(--text-light); font-size: .95rem;">
+                                    Relevant coursework: Calculus I & II, Linear Algebra, Data Structures, Probability,
+                                    Algorithm Design, Data Abstraction
+                                </p>
                             </div>
                         </div>
                         <div class="info-item">
@@ -1394,9 +1401,6 @@
                     <div style="margin-top: 2rem;">
                         <a href="resume.pdf" class="btn btn-primary" download>
                             <i class="fas fa-download"></i> Download Resume (PDF)
-                        </a>
-                        <a href="https://github.com/Kapil-Iyer/kapil-iyer-portfolio" target="_blank" class="btn btn-outline" style="margin-left: 1rem;">
-                            <i class="fab fa-github"></i> View Code
                         </a>
                     </div>
                 </div>
@@ -1668,78 +1672,84 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills & Certifications -->
     <section id="skills" class="section skills">
         <div class="container">
-            <h2 class="section-title">Skills</h2>
+            <h2 class="section-title">Skills & Certifications</h2>
             
             <div class="skills-grid">
-                <!-- Programming -->
+                <!-- Programming Languages -->
                 <div class="skill-category">
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-laptop-code"></i>
                         </div>
-                        <h3>Programming</h3>
+                        <h3>Programming Languages</h3>
                     </div>
                     <div class="skill-items">
                         <span class="skill-item"><i class="fab fa-python"></i> Python</span>
                         <span class="skill-item"><i class="fab fa-js-square"></i> JavaScript</span>
                         <span class="skill-item"><i class="fab fa-java"></i> Java</span>
                         <span class="skill-item"><i class="fas fa-code"></i> Racket</span>
+                        <span class="skill-item"><i class="fas fa-database"></i> SQL</span>
                         <span class="skill-item"><i class="fas fa-chart-line"></i> R</span>
+                        <span class="skill-item"><i class="fas fa-terminal"></i> C</span>
+                        <span class="skill-item"><i class="fas fa-file-alt"></i> LaTeX</span>
                     </div>
                 </div>
-                
-                <!-- Technologies -->
+
+                <!-- Data Science & ML -->
                 <div class="skill-category">
                     <div class="skill-header">
                         <div class="skill-icon">
-                            <i class="fas fa-rocket"></i>
+                            <i class="fas fa-robot"></i>
                         </div>
-                        <h3>Technologies</h3>
+                        <h3>Data Science & ML</h3>
                     </div>
                     <div class="skill-items">
-                        <span class="skill-item"><i class="fab fa-react"></i> React</span>
-                        <span class="skill-item"><i class="fab fa-aws"></i> AWS</span>
-                        <span class="skill-item"><i class="fab fa-github"></i> GitHub</span>
-                        <span class="skill-item"><i class="fas fa-code"></i> VS Code</span>
-                        <span class="skill-item"><i class="fas fa-terminal"></i> Replit</span>
+                        <span class="skill-item"><i class="fas fa-cubes"></i> NumPy</span>
+                        <span class="skill-item"><i class="fas fa-table"></i> pandas</span>
+                        <span class="skill-item"><i class="fas fa-project-diagram"></i> scikit-learn</span>
+                        <span class="skill-item"><i class="fas fa-random"></i> Regression & Classification</span>
+                        <span class="skill-item"><i class="fas fa-sitemap"></i> Random Forest</span>
+                        <span class="skill-item"><i class="fas fa-sliders-h"></i> Ridge/Lasso</span>
+                        <span class="skill-item"><i class="fas fa-bolt"></i> Feature Engineering</span>
+                        <span class="skill-item"><i class="fas fa-chart-area"></i> Time Series</span>
                     </div>
                 </div>
-                
-                <!-- Tools -->
+
+                <!-- Visualization & Tools -->
                 <div class="skill-category">
                     <div class="skill-header">
                         <div class="skill-icon">
-                            <i class="fas fa-tools"></i>
+                            <i class="fas fa-chart-bar"></i>
                         </div>
-                        <h3>Tools</h3>
+                        <h3>Visualization & Tools</h3>
                     </div>
                     <div class="skill-items">
-                        <span class="skill-item"><i class="fas fa-table"></i> Excel</span>
-                        <span class="skill-item"><i class="fas fa-file-alt"></i> Overleaf</span>
-                        <span class="skill-item"><i class="fas fa-video"></i> Premier Pro</span>
-                        <span class="skill-item"><i class="fas fa-film"></i> DaVinci Resolve</span>
+                        <span class="skill-item"><i class="fas fa-chart-line"></i> Matplotlib</span>
+                        <span class="skill-item"><i class="fas fa-chart-pie"></i> Seaborn</span>
+                        <span class="skill-item"><i class="fas fa-chart-area"></i> Plotly</span>
+                        <span class="skill-item"><i class="fas fa-stream"></i> Streamlit</span>
+                        <span class="skill-item"><i class="fas fa-book"></i> Jupyter Notebook</span>
+                        <span class="skill-item"><i class="fab fa-github"></i> Git/GitHub</span>
+                        <span class="skill-item"><i class="fas fa-laptop-code"></i> VS Code</span>
+                        <span class="skill-item"><i class="fas fa-cloud"></i> Watson Studio</span>
                     </div>
                 </div>
-                
-                <!-- Languages -->
+
+                <!-- Certifications -->
                 <div class="skill-category">
                     <div class="skill-header">
                         <div class="skill-icon">
-                            <i class="fas fa-globe"></i>
+                            <i class="fas fa-certificate"></i>
                         </div>
-                        <h3>Languages</h3>
+                        <h3>Certifications</h3>
                     </div>
                     <div class="skill-items">
-                        <span class="skill-item"><i class="fas fa-flag"></i> English</span>
-                        <span class="skill-item"><i class="fas fa-flag"></i> Hindi</span>
-                        <span class="skill-item"><i class="fas fa-flag"></i> Urdu</span>
-                        <span class="skill-item"><i class="fas fa-flag"></i> Marathi</span>
-                        <span class="skill-item"><i class="fas fa-flag"></i> Punjabi</span>
-                        <span class="skill-item"><i class="fas fa-flag"></i> Tamil</span>
-                        <span class="skill-item"><i class="fas fa-flag"></i> French</span>
+                        <span class="skill-item"><i class="fas fa-university"></i> Bloomberg Spreadsheet Analysis (BQL)</span>
+                        <span class="skill-item"><i class="fas fa-brain"></i> IBM ML and DL</span>
+                        <!-- Add more certifications as you earn them -->
                     </div>
                 </div>
             </div>
