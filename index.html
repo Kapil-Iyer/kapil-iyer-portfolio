@@ -338,8 +338,8 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.2fr 1.8fr;
+            gap: 3rem;
             align-items: flex-start;
         }
 
@@ -352,17 +352,19 @@
 
         .about-image img {
             width: 100%;
-            height: 360px;
+            height: 500px;
             object-fit: cover;
             object-position: center top;
             border-radius: 20px;
             transition: var(--transition);
-            transform: scale(0.92); /* show more of the image to avoid edge cropping */
+            transform: scale(1);
             transform-origin: center center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
         .about-image img:hover {
-            transform: scale(0.95);
+            transform: scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
         }
 
         /* Fallback styles if images don't load */
@@ -1107,6 +1109,42 @@
             border: 1px solid rgba(79, 70, 229, 0.3);
         }
 
+        /* Learn More Button in Drawer */
+        .drawer-learn-more {
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .drawer-learn-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .drawer-learn-more-btn:hover {
+            background: rgba(16, 185, 129, 0.2);
+            transform: translateX(3px);
+        }
+
+        .drawer-learn-more-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-learn-more-btn:hover i {
+            transform: translateX(3px);
+        }
+
         .timeline-content:hover {
             transform: translateY(-4px);
             border-color: rgba(79,70,229,.35);
@@ -1794,64 +1832,28 @@
             <!-- Vertical Timeline -->
             <div class="timeline" id="timeline">
                 <div class="timeline-progress" style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:3px;height:0;background:linear-gradient(to bottom, var(--primary), var(--accent));border-radius:2px;"></div>
-                <!-- Item 1 -->
-                <div class="timeline-item" data-tip="Leveling up in partnerships 🚀">
+                
+                <!-- Item 1: DSC Outreach (Most Recent) -->
+                <div class="timeline-item" data-tip="Leading CxC 2026! 🚀">
                     <div class="timeline-date">2025</div>
                     <div class="timeline-content" data-modal="modal-1">
-                        <h3>UW Governance Risk Compliance Association</h3>
-                        <span class="role">VP of External Relations</span>
-                        <span class="period">April 2025 - August 2025</span>
-                        <p class="description">Led external partnerships and strategic initiatives for a premier risk management student association, serving 100+ students with industry engagement.</p>
-                        <div class="timeline-tags">
-                            <span class="timeline-tag">Partnerships</span>
-                            <span class="timeline-tag">Event Management</span>
-                            <span class="timeline-tag">Stakeholder Engagement</span>
-                        </div>
-                        
-                        <!-- Hover Tooltip -->
-                        <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Built partnerships with 20+ fintech & cybersecurity professionals</li>
-                                <li>Coordinated with Ontario Treasury Board & consulting firms</li>
-                                <li>Achieved 40% response rate through personalized outreach</li>
-                                <li>Expanded club reach by 30% through cross-club collaboration</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">Strategic Planning</span>
-                                    <span class="modal-skill-tag">B2B Communication</span>
-                                    <span class="modal-skill-tag">LinkedIn Networking</span>
-                                    <span class="modal-skill-tag">Government Relations</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="timeline-item" data-tip="Survived 20+ sponsor calls! 📞">
-                    <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-2">
                         <h3>UW Data Science Club</h3>
                         <span class="role">Outreach Coordinator</span>
                         <span class="period">September 2025 - Present</span>
-                        <p class="description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon; building strategic relationships with industry leaders.</p>
+                        <p class="description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon (CxC 2026), building strategic relationships with industry leaders.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag">Corporate Outreach</span>
                             <span class="timeline-tag">Sponsorships</span>
-                            <span class="timeline-tag">Strategy</span>
+                            <span class="timeline-tag">Apollo.io</span>
                         </div>
                         
-                        <!-- Hover Tooltip -->
                         <div class="timeline-hover-drawer">
                             <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                             <ul>
-                                <li>Coordinated outreach for CxC 2026 hackathon (200+ participants)</li>
+                                <li>Coordinated outreach for CxC 2026, engaging 30+ sponsors for 200+ participants</li>
                                 <li>Achieved 25% response rate using Apollo.io & strategic messaging</li>
-                                <li>Managed partnerships with UW Math Fund, Hugging Face, Techyon</li>
-                                <li>Secured confirmed partnerships for February 2026 event</li>
+                                <li>Secured partnerships with UW Math Fund, Hugging Face, Techyon</li>
+                                <li>Managing communications and deliverables for February 2026 hackathon</li>
                             </ul>
                             <div class="timeline-hover-skills">
                                 <h4><i class="fas fa-code"></i>Skills:</h4>
@@ -1862,24 +1864,153 @@
                                     <span class="modal-skill-tag">Strategic Messaging</span>
                                 </div>
                             </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Click for full details
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                        </div>
+                </div>
 
-                <!-- Item 3 -->
-                <div class="timeline-item" data-tip="My first data-driven event ✨">
-                    <div class="timeline-date">2023</div>
+                <!-- Item 2: UW FinTech (NEW) -->
+                <div class="timeline-item" data-tip="Storytelling through finance 🎬">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content" data-modal="modal-2">
+                        <h3>UW FinTech</h3>
+                        <span class="role">Content Creator & Multimedia Coordinator</span>
+                        <span class="period">May 2025 - Present</span>
+                        <p class="description">Producing video content and multimedia for fintech education initiatives, collaborating with industry partners like Relay Financial to create resources for students breaking into fintech careers.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Video Editing</span>
+                            <span class="timeline-tag">Content Creation</span>
+                            <span class="timeline-tag">Storytelling</span>
+                        </div>
+                        
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Edited promotional reels using DaVinci Resolve, Adobe Premiere Pro, CapCut</li>
+                                <li>Collaborated with Relay Financial for networking event content & co-op advice</li>
+                                <li>Created fintech career guides and storytelling content for aspiring professionals</li>
+                                <li>Combined technical editing skills with financial industry knowledge</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">DaVinci Resolve</span>
+                                    <span class="modal-skill-tag">Adobe Premiere Pro</span>
+                                    <span class="modal-skill-tag">CapCut</span>
+                                    <span class="modal-skill-tag">Content Strategy</span>
+                                    <span class="modal-skill-tag">Storytelling</span>
+                                </div>
+                            </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Click for full details
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: DSC Social Media (Past Role) -->
+                <div class="timeline-item" data-tip="Built the club's digital presence 📱">
+                    <div class="timeline-date">2025</div>
                     <div class="timeline-content" data-modal="modal-3">
+                        <h3>UW Data Science Club</h3>
+                        <span class="role">Social/Multimedia Coordinator</span>
+                        <span class="period">April 2025 - August 2025</span>
+                        <p class="description">Managed the club's social media presence, creating engaging content to promote data science workshops, industry panels, and technical events across Instagram and LinkedIn.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Social Media</span>
+                            <span class="timeline-tag">Content Design</span>
+                            <span class="timeline-tag">Community</span>
+                        </div>
+                        
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Managed Instagram and LinkedIn, promoting workshops and industry panels</li>
+                                <li>Designed Reels, stories, and event graphics to boost student engagement</li>
+                                <li>Aligned posts with club goals, maintaining professional brand voice</li>
+                                <li>Highlighted initiatives like Leetcode prep, alumni chats, and hackathons</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">Social Media Management</span>
+                                    <span class="modal-skill-tag">Graphic Design</span>
+                                    <span class="modal-skill-tag">Content Scheduling</span>
+                                    <span class="modal-skill-tag">Brand Voice</span>
+                                </div>
+                            </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Click for full details
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: GRC -->
+                <div class="timeline-item" data-tip="Leveling up in partnerships 🤝">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content" data-modal="modal-4">
+                        <h3>UW Governance Risk Compliance Association</h3>
+                        <span class="role">VP of External Relations</span>
+                        <span class="period">April 2025 - August 2025</span>
+                        <p class="description">Led external partnerships and strategic initiatives for a premier risk management student association, serving 100+ students with industry engagement across fintech, cybersecurity, and regulatory compliance.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Partnerships</span>
+                            <span class="timeline-tag">Event Management</span>
+                            <span class="timeline-tag">Government Relations</span>
+                        </div>
+                        
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Built partnerships with 20+ fintech & cybersecurity professionals</li>
+                                <li>Coordinated with Ontario Treasury Board & consulting firms</li>
+                                <li>Achieved 40% response rate through personalized LinkedIn outreach</li>
+                                <li>Led cross-club collaboration with UW Venture, UW FinTech, UW Data Science Club</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">Strategic Planning</span>
+                                    <span class="modal-skill-tag">B2B Communication</span>
+                                    <span class="modal-skill-tag">LinkedIn Networking</span>
+                                    <span class="modal-skill-tag">Government Relations</span>
+                                </div>
+                            </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Click for full details
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: STEAM Change -->
+                <div class="timeline-item" data-tip="Inspiring young minds ✨">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content" data-modal="modal-5">
                         <h3>STEAM Change Mentorship Program</h3>
                         <span class="role">Youth Lead Mentor</span>
                         <span class="period">September 2023 - June 2024</span>
                         <p class="description">Led educational initiatives combining STEAM for young learners and fostered project-based learning and mentoring.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag">Mentoring</span>
-                            <span class="timeline-tag">STEAM</span>
+                            <span class="timeline-tag">STEAM Education</span>
                         </div>
                         
-                        <!-- Hover Tooltip -->
                         <div class="timeline-hover-drawer">
                             <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                             <ul>
@@ -1897,24 +2028,29 @@
                                     <span class="modal-skill-tag">STEAM Education</span>
                                 </div>
                             </div>
-                        </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Click for full details
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
                             </div>
                         </div>
+                    </div>
+                </div>
                         
-                <!-- Item 4 -->
+                <!-- Item 6: Code Krafters -->
                 <div class="timeline-item" data-tip="Built a coding community 💡">
                     <div class="timeline-date">2023</div>
-                    <div class="timeline-content" data-modal="modal-4">
+                    <div class="timeline-content" data-modal="modal-6">
                         <h3>Code Krafters: Clarkson Coding Club</h3>
                         <span class="role">Founder & President</span>
                         <span class="period">September 2023 - June 2024</span>
                         <p class="description">Established and led a student-driven coding club focused on collaborative learning and creative projects.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag">Leadership</span>
-                            <span class="timeline-tag">Community</span>
+                            <span class="timeline-tag">Community Building</span>
                         </div>
                         
-                        <!-- Hover Tooltip -->
                         <div class="timeline-hover-drawer">
                             <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                             <ul>
@@ -1931,6 +2067,12 @@
                                     <span class="modal-skill-tag">Mentoring</span>
                                     <span class="modal-skill-tag">Programming</span>
                                 </div>
+                            </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Click for full details
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
