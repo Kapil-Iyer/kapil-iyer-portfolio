@@ -1017,6 +1017,109 @@
             font-weight: 600;
         }
 
+        /* Hover Bottom Drawer Expansion - Option C */
+        .timeline-content {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-hover-drawer {
+            position: relative;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+            opacity: 0;
+            margin-top: 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(16, 185, 129, 0.08));
+            border-radius: 12px;
+            border-top: 2px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .timeline-content:hover .timeline-hover-drawer {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 1rem;
+            padding: 1.2rem;
+        }
+
+        .timeline-hover-drawer h4 {
+            color: var(--primary-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-hover-drawer h4 i {
+            font-size: 0.85rem;
+        }
+
+        .timeline-hover-drawer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+
+        .timeline-hover-drawer li {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .timeline-hover-drawer li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .timeline-hover-skills {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .timeline-hover-skills h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .timeline-hover-skills .modal-skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .timeline-hover-skills .modal-skill-tag {
+            background: rgba(79, 70, 229, 0.15);
+            color: var(--primary-light);
+            padding: 0.3rem 0.7rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-4px);
+            border-color: rgba(79,70,229,.35);
+            box-shadow: 0 24px 48px rgba(0,0,0,.35);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-hover-drawer {
+                display: none;
+            }
+        }
+
+
         /* Responsive Tree / Timeline */
         @media (max-width: 768px) {
             .tree-container {
@@ -1530,12 +1633,13 @@
     <section class="hero">
         <div class="container" style="display: flex; align-items: center; gap: 3rem;">
             <div class="hero-content">
-                <span class="hero-subtitle">Mathematics Student & Tech Enthusiast</span>
+                <span class="hero-subtitle">ML Engineer & Data Science Builder</span>
                 <h1 class="hero-title">Kapil Iyer</h1>
                 <p class="hero-description">
-                    I'm a Mathematics student at the University of Waterloo passionate about technology, 
-                    innovation, and creating solutions with real-world impact. Currently exploring opportunities 
-                    in data science, finance, and software development.
+                    Applied Mathematics student @ UWaterloo specializing in <strong>Scientific Machine Learning</strong>, 
+                    with minors in <strong>Statistics and Computing</strong>. Building ML-powered financial analysis tools 
+                    using Python, scikit-learn, and real market data. Focused on making sophisticated data science 
+                    accessible through practical applications.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -1568,17 +1672,41 @@
                     <img src="images/profile-photo.jpg" alt="Kapil Iyer Profile Photo" style="width: 100%; height: 400px; object-fit: cover; border-radius: 20px;">
                 </div>
                 <div class="about-content">
-                    <h3>Curious mind with a passion for innovation</h3>
-                    <p>
-                        I am a Mathematics student at the University of Waterloo with a strong interest in 
-                        technology, finance, and problem-solving. Through various leadership roles in university 
-                        clubs and organizations, I've developed skills in project management, mentoring, and 
-                        cross-functional collaboration.
+                    <h3 style="background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.8rem; margin-bottom: 1.5rem;">Building the future of accessible financial ML</h3>
+                    
+                    <div style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                        <p style="color: var(--light); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                            I'm an Applied Mathematics student at UWaterloo specializing in 
+                            <strong style="color: var(--primary-light);">Scientific Machine Learning</strong>, with minors in 
+                            <strong style="color: var(--primary-light);">Statistics and Computing</strong>.
+                        </p>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1)); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(79, 70, 229, 0.2);">
+                        <h4 style="color: var(--accent); font-size: 1.1rem; margin-bottom: 1rem; font-weight: 600;">
+                            <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>My 7-Month Vision
+                        </h4>
+                        <p style="color: var(--text-light); line-height: 1.8;">
+                            I'm building a portfolio of <strong>4 ML-powered financial tools</strong>—starting with a stock market 
+                            analysis platform, expanding to budget optimization, portfolio risk analysis with Bloomberg Terminal 
+                            integration, and an AI education platform for Canadian newcomers. Each project builds on the last, 
+                            creating a progression from foundational ML to production-ready systems.
+                        </p>
+                    </div>
+                    
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                        With access to <strong style="color: var(--primary-light);">Bloomberg Terminal</strong>, I'm bridging 
+                        the gap between institutional-grade financial data and accessible ML applications. My goal: 
+                        <em style="color: var(--accent);">democratize sophisticated financial analysis</em> by building tools 
+                        that anyone can use, not just those who can afford $24K/year professional platforms.
                     </p>
-                    <p>
-                        My goal is to leverage my mathematical background and technical skills to solve 
-                        complex problems and create innovative solutions that make a positive impact.
-                    </p>
+                    
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
+                        <p style="color: var(--light); font-size: 1.05rem; font-weight: 500;">
+                            I'm not just learning ML theory—<strong style="color: var(--accent);">I'm shipping real products 
+                            that solve real problems.</strong>
+                        </p>
+                    </div>
                     
                     <div class="about-info">
                         <div class="info-item">
@@ -1630,20 +1758,28 @@
                     </div>
                     <div class="edu-meta">
                         <span class="chip">Specialization: Applied Math — Scientific Machine Learning</span>
-                        <span class="chip">Minor: Statistics and Computing</span>
+                        <span class="chip">Minors: Statistics & Computing</span>
+                    </div>
+                    <div style="margin: 1.5rem 0;">
+                        <h4 style="color: var(--primary-light); font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 600;">What I'm Learning</h4>
+                        <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 1rem;">
+                            <strong>Core Foundation:</strong> Calculus, Linear Algebra, Data Structures, Probability, Algorithm Design, Data Abstraction
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 1rem;">
+                            <strong>Specialization Focus:</strong> Machine Learning theory, Statistical modeling, Scientific computing, Numerical optimization
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.7;">
+                            <strong>Applied Skills:</strong> Building ML models from scratch, Financial data analysis with Bloomberg Terminal, 
+                            Mathematical modeling for real-world problems
+                        </p>
                     </div>
                     <div class="edu-courses">
-                        <span class="course-tag">Calculus I & II</span>
-                        <span class="course-tag">Linear Algebra</span>
-                        <span class="course-tag">Data Structures</span>
-                        <span class="course-tag">Probability</span>
+                        <span class="course-tag">Machine Learning</span>
+                        <span class="course-tag">Statistical Modeling</span>
+                        <span class="course-tag">Financial Mathematics</span>
+                        <span class="course-tag">Scientific Computing</span>
+                        <span class="course-tag">Data Analysis</span>
                         <span class="course-tag">Algorithm Design</span>
-                        <span class="course-tag">Data Abstraction</span>
-                    </div>
-                    <div class="edu-stats">
-                        <div class="stat"><span class="stat-label">Expected Grad</span><span class="stat-value">Aug 2029</span></div>
-                        <div class="stat"><span class="stat-label">Co‑op Terms</span><span class="stat-value">5</span></div>
-                        <div class="stat"><span class="stat-label">Focus</span><span class="stat-value">Scientific ML</span></div>
                     </div>
                 </div>
             </div>
@@ -1671,6 +1807,26 @@
                             <span class="timeline-tag">Event Management</span>
                             <span class="timeline-tag">Stakeholder Engagement</span>
                         </div>
+                        
+                        <!-- Hover Tooltip -->
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Built partnerships with 20+ fintech & cybersecurity professionals</li>
+                                <li>Coordinated with Ontario Treasury Board & consulting firms</li>
+                                <li>Achieved 40% response rate through personalized outreach</li>
+                                <li>Expanded club reach by 30% through cross-club collaboration</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">Strategic Planning</span>
+                                    <span class="modal-skill-tag">B2B Communication</span>
+                                    <span class="modal-skill-tag">LinkedIn Networking</span>
+                                    <span class="modal-skill-tag">Government Relations</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1687,6 +1843,26 @@
                             <span class="timeline-tag">Sponsorships</span>
                             <span class="timeline-tag">Strategy</span>
                         </div>
+                        
+                        <!-- Hover Tooltip -->
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Coordinated outreach for CxC 2026 hackathon (200+ participants)</li>
+                                <li>Achieved 25% response rate using Apollo.io & strategic messaging</li>
+                                <li>Managed partnerships with UW Math Fund, Hugging Face, Techyon</li>
+                                <li>Secured confirmed partnerships for February 2026 event</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">Apollo.io</span>
+                                    <span class="modal-skill-tag">B2B Outreach</span>
+                                    <span class="modal-skill-tag">Event Coordination</span>
+                                    <span class="modal-skill-tag">Strategic Messaging</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                         </div>
 
@@ -1702,6 +1878,26 @@
                             <span class="timeline-tag">Mentoring</span>
                             <span class="timeline-tag">STEAM</span>
                         </div>
+                        
+                        <!-- Hover Tooltip -->
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Mentored elementary & middle school students in STEAM projects</li>
+                                <li>Developed curriculum for UN Sustainable Development Goals</li>
+                                <li>Fostered creativity & problem-solving skills in young learners</li>
+                                <li>Collaborated with educators to integrate STEAM concepts</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">Curriculum Development</span>
+                                    <span class="modal-skill-tag">Project-Based Learning</span>
+                                    <span class="modal-skill-tag">Mentoring</span>
+                                    <span class="modal-skill-tag">STEAM Education</span>
+                                </div>
+                            </div>
+                        </div>
                             </div>
                         </div>
                         
@@ -1716,6 +1912,26 @@
                         <div class="timeline-tags">
                             <span class="timeline-tag">Leadership</span>
                             <span class="timeline-tag">Community</span>
+                        </div>
+                        
+                        <!-- Hover Tooltip -->
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Founded student coding club from scratch</li>
+                                <li>Led collaborative learning sessions for students across skill levels</li>
+                                <li>Supported students preparing for Waterloo CCC competition</li>
+                                <li>Built community fostering creativity & technical growth</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">Leadership</span>
+                                    <span class="modal-skill-tag">Community Building</span>
+                                    <span class="modal-skill-tag">Mentoring</span>
+                                    <span class="modal-skill-tag">Programming</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1738,7 +1954,7 @@
             <p class="modal-description">Leading external partnerships and strategic initiatives for a premier risk management student association at the University of Waterloo, serving 100+ students.</p>
             
             <div class="modal-achievements">
-                            <h4>Key Achievements:</h4>
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                             <ul>
                     <li>Built and maintained partnerships with 20+ professionals in fintech, cybersecurity, and regulatory compliance to support speaker events, workshops, and mentorship programs serving 100+ students</li>
                     <li>Coordinated with government bodies (Ontario Treasury Board Secretariat), consulting firms, and fintech startups in partnership with UW Fintech including Relay Financial to host interactive networking sessions introducing students to real-world GRC and finance practices</li>
@@ -1777,7 +1993,7 @@
             <p class="modal-description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon and building strategic relationships with industry leaders.</p>
             
             <div class="modal-achievements">
-                            <h4>Key Achievements:</h4>
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                             <ul>
                     <li>Coordinate corporate partnership outreach for Canada's largest student-run data science hackathon (CxC 2026), engaging 30+ potential sponsors to secure funding and mentorship for 200+ participants</li>
                     <li>Utilized Apollo.io and professional B2B outreach tools to identify and engage target companies, achieving a 25% response rate through strategic messaging and personalized proposals</li>
@@ -1816,7 +2032,7 @@
             <p class="modal-description">Leading educational initiatives that combine Science, Technology, Arts, Engineering, and Mathematics for young learners.</p>
             
             <div class="modal-achievements">
-                            <h4>Key Achievements:</h4>
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                             <ul>
                                 <li>Mentored and led projects comprising STEAM topics for elementary and middle school students</li>
                                 <li>Developed curriculum and project-based learning activities</li>
@@ -1854,7 +2070,7 @@
             <p class="modal-description">Established and led a student-driven coding club focused on collaborative learning and creative project development.</p>
             
             <div class="modal-achievements">
-                            <h4>Key Achievements:</h4>
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                             <ul>
                                 <li>Launched a student-led coding club from concept to active organization</li>
                                 <li>Mentored students preparing for the Waterloo Canadian Computing Contest (CCC)</li>
