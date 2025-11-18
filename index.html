@@ -1833,7 +1833,53 @@
             <div class="timeline" id="timeline">
                 <div class="timeline-progress" style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:3px;height:0;background:linear-gradient(to bottom, var(--primary), var(--accent));border-radius:2px;"></div>
                 
-                <!-- Item 1: DSC Outreach (Most Recent) -->
+                <!-- Item 0: Dazia Consulting (MOST RECENT - TOP) -->
+                <div class="timeline-item" data-tip="Building AI for Canadian finance! 🤖">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content" data-modal="modal-0">
+                        <h3>Dazia Consulting Inc.</h3>
+                        <span class="role">ML Project Engineer</span>
+                        <span class="period">November 2025 - Present</span>
+                        <p class="description">Building AI-powered exam prep platform for Canadian financial certifications with NLP question generation, adaptive learning, and full-stack development serving 100+ beta users.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Machine Learning</span>
+                            <span class="timeline-tag">NLP</span>
+                            <span class="timeline-tag">Full-Stack</span>
+                            <span class="timeline-tag">Gemini API</span>
+                        </div>
+                        
+                        <div class="timeline-hover-drawer">
+                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                            <ul>
+                                <li>Developing NLP AI Chatbot question generator using Gemini API, spaCy and Hugging Face Transformers on 10,000+ pages of financial certification content (CSC, IFIC), generating 5,000+ practice questions targeting 85%+ accuracy</li>
+                                <li>Building full-stack study platform with React and Node.js, implementing freemium model with authentication and analytics across 8 topics, targeting 8% paid conversion rate from 100+ beta users</li>
+                                <li>Training ML models with TensorFlow and PyTorch, engineering feature extraction pipeline from financial text, optimizing inference to less than 2 seconds per question generation for production deployment</li>
+                            </ul>
+                            <div class="timeline-hover-skills">
+                                <h4><i class="fas fa-code"></i>Skills:</h4>
+                                <div class="modal-skill-tags">
+                                    <span class="modal-skill-tag">Python</span>
+                                    <span class="modal-skill-tag">React</span>
+                                    <span class="modal-skill-tag">Node.js</span>
+                                    <span class="modal-skill-tag">Gemini API</span>
+                                    <span class="modal-skill-tag">spaCy</span>
+                                    <span class="modal-skill-tag">Hugging Face</span>
+                                    <span class="modal-skill-tag">TensorFlow</span>
+                                    <span class="modal-skill-tag">PyTorch</span>
+                                    <span class="modal-skill-tag">NLP</span>
+                                </div>
+                            </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Click for full details
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 1: DSC Outreach -->
                 <div class="timeline-item" data-tip="Leading CxC 2026! 🚀">
                     <div class="timeline-date">2025</div>
                     <div class="timeline-content" data-modal="modal-1">
@@ -2082,70 +2128,74 @@
     </section>
 
     <!-- Experience Modals -->
-    <!-- Modal 1: UW GRC -->
+    
+    <!-- Modal 0: Dazia Consulting (NEW - FIRST) -->
+    <div class="experience-modal" id="modal-0">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-0')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Dazia Consulting Inc.</h3>
+                <span class="modal-role">ML Project Engineer</span>
+                <span class="modal-period">November 2025 - Present</span>
+            </div>
+            <p class="modal-description">Building AI-powered exam preparation platform for Canadian financial certifications (CSC, IFIC), developing NLP-based question generation, adaptive learning systems, and full-stack web application serving 100+ beta users.</p>
+            
+            <div class="modal-achievements">
+                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <ul>
+                    <li>Developing NLP AI Chatbot question generator using Gemini API, spaCy and Hugging Face Transformers on 10,000+ pages of financial certification content (CSC, IFIC), generating 5,000+ practice questions targeting 85%+ accuracy</li>
+                    <li>Building full-stack study platform with React and Node.js, implementing freemium model with authentication and analytics across 8 topics, targeting 8% paid conversion rate from 100+ beta users</li>
+                    <li>Training ML models with TensorFlow and PyTorch, engineering feature extraction pipeline from financial text, optimizing inference to less than 2 seconds per question generation for production deployment</li>
+                </ul>
+            </div>
+
+            <div class="modal-skills">
+                <h4>Skills & Tools Used:</h4>
+                <div class="modal-skill-tags">
+                    <span class="modal-skill-tag">Python</span>
+                    <span class="modal-skill-tag">React</span>
+                    <span class="modal-skill-tag">Node.js</span>
+                    <span class="modal-skill-tag">Gemini API</span>
+                    <span class="modal-skill-tag">spaCy</span>
+                    <span class="modal-skill-tag">Hugging Face</span>
+                    <span class="modal-skill-tag">TensorFlow</span>
+                    <span class="modal-skill-tag">PyTorch</span>
+                    <span class="modal-skill-tag">Flask/Django</span>
+                    <span class="modal-skill-tag">NLP</span>
+                    <span class="modal-skill-tag">ML Training</span>
+                    <span class="modal-skill-tag">Feature Engineering</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 1: UW Data Science Club - Outreach -->
     <div class="experience-modal" id="modal-1">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-1')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                        <h3>UW Governance Risk Compliance Association</h3>
-                <span class="modal-role">VP of External Relations</span>
-                <span class="modal-period">April 2025 - August 2025</span>
-            </div>
-            <p class="modal-description">Leading external partnerships and strategic initiatives for a premier risk management student association at the University of Waterloo, serving 100+ students.</p>
-            
-            <div class="modal-achievements">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                    <li>Built and maintained partnerships with 20+ professionals in fintech, cybersecurity, and regulatory compliance to support speaker events, workshops, and mentorship programs serving 100+ students</li>
-                    <li>Coordinated with government bodies (Ontario Treasury Board Secretariat), consulting firms, and fintech startups in partnership with UW Fintech including Relay Financial to host interactive networking sessions introducing students to real-world GRC and finance practices</li>
-                    <li>Managed external communications including outreach emails, LinkedIn networking, and follow-ups, achieving 40% response rate through personalized stakeholder engagement strategies</li>
-                    <li>Led cross-club collaboration initiatives with UW Venture, UW FinTech, and UW Data Science Club to co-host events on emerging technology risk and data governance, expanding club reach by 30%</li>
-                            </ul>
-                        </div>
-
-            <div class="modal-skills">
-                            <h4>Skills & Tools Used:</h4>
-                <div class="modal-skill-tags">
-                    <span class="modal-skill-tag">Strategic Planning</span>
-                    <span class="modal-skill-tag">Partnership Development</span>
-                    <span class="modal-skill-tag">Event Management</span>
-                    <span class="modal-skill-tag">LinkedIn Networking</span>
-                    <span class="modal-skill-tag">Stakeholder Engagement</span>
-                    <span class="modal-skill-tag">Cross-functional Collaboration</span>
-                    <span class="modal-skill-tag">Government Relations</span>
-                    <span class="modal-skill-tag">B2B Communication</span>
-                            </div>
-                        </div>
-                            </div>
-                        </div>
-                        
-    <!-- Modal 2: UW Data Science Club -->
-    <div class="experience-modal" id="modal-2">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-2')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-header">
-                        <h3>UW Data Science Club</h3>
+                <h3>UW Data Science Club</h3>
                 <span class="modal-role">Outreach Coordinator</span>
                 <span class="modal-period">September 2025 - Present</span>
-                        </div>
+            </div>
             <p class="modal-description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon and building strategic relationships with industry leaders.</p>
             
             <div class="modal-achievements">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
+                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <ul>
                     <li>Coordinate corporate partnership outreach for Canada's largest student-run data science hackathon (CxC 2026), engaging 30+ potential sponsors to secure funding and mentorship for 200+ participants</li>
                     <li>Utilized Apollo.io and professional B2B outreach tools to identify and engage target companies, achieving a 25% response rate through strategic messaging and personalized proposals</li>
                     <li>Collaborate with CxC organizing team and past sponsors (UW Math Endowment Fund, Hugging Face, Techyon) to develop sponsor activation strategies, managing communications and deliverables across 3 cross-club partnerships</li>
                     <li>Build relationships with fintech and technology companies to provide students with industry exposure, working toward confirmed partnerships for February 2026 hackathon</li>
-                            </ul>
-                        </div>
+                </ul>
+            </div>
 
             <div class="modal-skills">
-                            <h4>Skills & Tools Used:</h4>
+                <h4>Skills & Tools Used:</h4>
                 <div class="modal-skill-tags">
                     <span class="modal-skill-tag">Apollo.io</span>
                     <span class="modal-skill-tag">B2B Outreach</span>
@@ -2155,36 +2205,150 @@
                     <span class="modal-skill-tag">Event Coordination</span>
                     <span class="modal-skill-tag">Cross-functional Collaboration</span>
                     <span class="modal-skill-tag">Corporate Relations</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
                 
-    <!-- Modal 3: STEAM Change -->
+    <!-- Modal 2: UW FinTech (NEW) -->
+    <div class="experience-modal" id="modal-2">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-2')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>UW FinTech</h3>
+                <span class="modal-role">Content Creator & Multimedia Coordinator</span>
+                <span class="modal-period">May 2025 - Present</span>
+            </div>
+            <p class="modal-description">Producing video content and multimedia for fintech education initiatives, collaborating with industry partners like Relay Financial to create resources for students breaking into fintech careers.</p>
+            
+            <div class="modal-achievements">
+                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <ul>
+                    <li>Edited promotional reels using DaVinci Resolve, Adobe Premiere Pro, CapCut for fintech workshops and events</li>
+                    <li>Collaborated with Relay Financial for networking event content and co-op advice for aspiring fintech professionals</li>
+                    <li>Created fintech career guides and storytelling content combining technical editing skills with financial industry knowledge</li>
+                    <li>Managed social media channels to promote fintech education and industry networking opportunities</li>
+                </ul>
+            </div>
+
+            <div class="modal-skills">
+                <h4>Skills & Tools Used:</h4>
+                <div class="modal-skill-tags">
+                    <span class="modal-skill-tag">DaVinci Resolve</span>
+                    <span class="modal-skill-tag">Adobe Premiere Pro</span>
+                    <span class="modal-skill-tag">CapCut</span>
+                    <span class="modal-skill-tag">Content Strategy</span>
+                    <span class="modal-skill-tag">Storytelling</span>
+                    <span class="modal-skill-tag">Video Editing</span>
+                    <span class="modal-skill-tag">Social Media</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: UW Data Science Club - Social (NEW) -->
     <div class="experience-modal" id="modal-3">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-3')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                        <h3>STEAM Change Mentorship Program</h3>
+                <h3>UW Data Science Club</h3>
+                <span class="modal-role">Social/Multimedia Coordinator</span>
+                <span class="modal-period">April 2025 - August 2025</span>
+            </div>
+            <p class="modal-description">Managed the club's social media presence, creating engaging content to promote data science workshops, industry panels, and technical events across Instagram and LinkedIn.</p>
+            
+            <div class="modal-achievements">
+                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <ul>
+                    <li>Managed Instagram and LinkedIn, promoting workshops and industry panels for 500+ club members</li>
+                    <li>Designed Reels, stories, and event graphics to boost student engagement by 40%</li>
+                    <li>Aligned posts with club goals, maintaining professional brand voice across all platforms</li>
+                    <li>Highlighted initiatives like Leetcode prep, alumni chats, and hackathons to attract new members</li>
+                </ul>
+            </div>
+
+            <div class="modal-skills">
+                <h4>Skills & Tools Used:</h4>
+                <div class="modal-skill-tags">
+                    <span class="modal-skill-tag">Social Media Management</span>
+                    <span class="modal-skill-tag">Graphic Design</span>
+                    <span class="modal-skill-tag">Canva</span>
+                    <span class="modal-skill-tag">Instagram</span>
+                    <span class="modal-skill-tag">LinkedIn</span>
+                    <span class="modal-skill-tag">Content Creation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <!-- Modal 4: UW GRC -->
+    <div class="experience-modal" id="modal-4">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-4')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>UW Governance Risk Compliance Association</h3>
+                <span class="modal-role">VP of External Relations</span>
+                <span class="modal-period">April 2025 - August 2025</span>
+            </div>
+            <p class="modal-description">Leading external partnerships and strategic initiatives for a premier risk management student association at the University of Waterloo, serving 100+ students.</p>
+            
+            <div class="modal-achievements">
+                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <ul>
+                    <li>Built and maintained partnerships with 20+ professionals in fintech, cybersecurity, and regulatory compliance to support speaker events, workshops, and mentorship programs serving 100+ students</li>
+                    <li>Coordinated with government bodies (Ontario Treasury Board Secretariat), consulting firms, and fintech startups in partnership with UW Fintech including Relay Financial to host interactive networking sessions introducing students to real-world GRC and finance practices</li>
+                    <li>Managed external communications including outreach emails, LinkedIn networking, and follow-ups, achieving 40% response rate through personalized stakeholder engagement strategies</li>
+                    <li>Led cross-club collaboration initiatives with UW Venture, UW FinTech, and UW Data Science Club to co-host events on emerging technology risk and data governance, expanding club reach by 30%</li>
+                </ul>
+            </div>
+
+            <div class="modal-skills">
+                <h4>Skills & Tools Used:</h4>
+                <div class="modal-skill-tags">
+                    <span class="modal-skill-tag">Strategic Planning</span>
+                    <span class="modal-skill-tag">Partnership Development</span>
+                    <span class="modal-skill-tag">Event Management</span>
+                    <span class="modal-skill-tag">LinkedIn Networking</span>
+                    <span class="modal-skill-tag">Stakeholder Engagement</span>
+                    <span class="modal-skill-tag">Cross-functional Collaboration</span>
+                    <span class="modal-skill-tag">Government Relations</span>
+                    <span class="modal-skill-tag">B2B Communication</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 5: STEAM Change -->
+    <div class="experience-modal" id="modal-5">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-5')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>STEAM Change Mentorship Program</h3>
                 <span class="modal-role">Youth Lead Mentor</span>
                 <span class="modal-period">September 2023 - June 2024</span>
             </div>
             <p class="modal-description">Leading educational initiatives that combine Science, Technology, Arts, Engineering, and Mathematics for young learners.</p>
             
             <div class="modal-achievements">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Mentored and led projects comprising STEAM topics for elementary and middle school students</li>
-                                <li>Developed curriculum and project-based learning activities</li>
-                                <li>Fostered creativity and problem-solving skills in young students</li>
-                                <li>Collaborated with educators to integrate STEAM concepts into classroom learning</li>
-                            </ul>
-                        </div>
+                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <ul>
+                    <li>Mentored and led projects comprising STEAM topics for elementary and middle school students</li>
+                    <li>Developed curriculum and project-based learning activities</li>
+                    <li>Fostered creativity and problem-solving skills in young students</li>
+                    <li>Collaborated with educators to integrate STEAM concepts into classroom learning</li>
+                </ul>
+            </div>
 
             <div class="modal-skills">
-                            <h4>Skills & Tools Used:</h4>
+                <h4>Skills & Tools Used:</h4>
                 <div class="modal-skill-tags">
                     <span class="modal-skill-tag">Curriculum Development</span>
                     <span class="modal-skill-tag">Project-Based Learning</span>
@@ -2193,19 +2357,19 @@
                     <span class="modal-skill-tag">Google Workspace</span>
                     <span class="modal-skill-tag">Microsoft Office</span>
                     <span class="modal-skill-tag">Educational Technology</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
                 
-    <!-- Modal 4: Code Krafters -->
-    <div class="experience-modal" id="modal-4">
+    <!-- Modal 6: Code Krafters -->
+    <div class="experience-modal" id="modal-6">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-4')">
+            <button class="modal-close" onclick="closeModal('modal-6')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                        <h3>Code Krafters: Clarkson Coding Club</h3>
+                <h3>Code Krafters: Clarkson Coding Club</h3>
                 <span class="modal-role">Founder & President</span>
                 <span class="modal-period">September 2023 - June 2024</span>
             </div>
@@ -2267,23 +2431,29 @@
                         </div>
                         </div>
 
-                <!-- Portfolio -->
+                <!-- ChessHacks Project (NEW) -->
                 <div class="project-item">
                     <div class="project-meta">
-                        <h3>Personal Portfolio Website</h3>
-                        <p>Responsive portfolio with interactive experience tree, ML‑focused skills, and smooth animations—designed for speed and clarity.</p>
+                        <h3>Neural Network Chess Strategy Engine 
+                            <span style="display:inline-block;padding:0.2rem 0.6rem;border-radius:12px;font-size:0.7rem;font-weight:600;margin-left:0.5rem;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(167,139,250,0.2));border:1px solid rgba(139,92,246,0.4);color:#a78bfa;">Hackathon Project</span>
+                        </h3>
+                        <p>Building chess engine with PyTorch neural networks for position evaluation, training on chess datasets to predict optimal moves. Developed during ChessHacks hackathon to learn game AI fundamentals.</p>
                         <div class="project-actions">
-                            <a class="project-btn" href="https://github.com/Kapil-Iyer/kapil-iyer-portfolio" target="_blank"><i class="fab fa-github"></i> Source</a>
-                            <a class="project-btn" href="#hero"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a class="project-btn" href="#contact"><i class="fas fa-info-circle"></i> Learn More</a>
+                        </div>
                     </div>
-                </div>
                     <div class="project-tech">
-                        <span class="tech-pill">HTML</span>
-                        <span class="tech-pill">CSS</span>
-                        <span class="tech-pill">JavaScript</span>
-                        <span class="tech-pill">Responsive Design</span>
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">PyTorch</span>
+                        <span class="tech-pill">Next.js</span>
+                        <span class="tech-pill">python-chess</span>
+                        <span class="tech-pill">Deep Learning</span>
+                        <span class="tech-pill">CNNs</span>
+                        <span class="tech-pill">Neural Networks</span>
+                        <span class="tech-pill">Game AI</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
