@@ -78,7 +78,7 @@ kapil-iyer-portfolio/
 ├── README.md               # Project documentation
 ├── images/                 # Portfolio images
 │   ├── hero-image.png     # Hero section image
-│   └── profile-photo.jpg  # Profile photo
+│   └── profile-photo.jpeg # Profile photo
 ├── data/                   # Dynamic content
 │   ├── experience.json    # Experience data
 │   └── projects.json      # Projects data
