@@ -6,7 +6,7 @@ A modern, responsive portfolio website showcasing my skills, experience, and pro
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-🔗 **Live Demo**: https://kapil-iyer-portfolio.vercel.app/
+🔗 **Live**: https://kapil-iyer-portfolio.vercel.app/
 
 ## ✨ Features
 
