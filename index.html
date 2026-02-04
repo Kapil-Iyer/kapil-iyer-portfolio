@@ -1226,9 +1226,11 @@
             .timeline-date { position: static; transform: none; display: inline-block; margin-bottom: .6rem; }
         }
 
-        /* Projects Section */
+        /* Projects Section - Horizontal Slider */
         .projects {
             background: var(--dark);
+            position: relative;
+            overflow: hidden;
         }
 
         .projects-header {
@@ -1238,98 +1240,510 @@
             margin-bottom: 3rem;
         }
 
-        /* New project list layout (inspired by clean vertical flow) */
-        .project-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-            max-width: 950px;
+        /* Carousel Wrapper */
+        .projects-carousel-wrapper {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        /* Navigation Arrows */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(79, 70, 229, 0.3);
+            color: var(--light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .carousel-nav:hover {
+            opacity: 1;
+            background: rgba(79, 70, 229, 0.4);
+            border-color: rgba(79, 70, 229, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carousel-prev {
+            left: 0;
+        }
+
+        .carousel-next {
+            right: 0;
+        }
+
+        /* Carousel Container */
+        .projects-carousel {
+            overflow: hidden;
+            position: relative;
             margin: 0 auto;
         }
 
-        .project-item {
-            display: grid;
-            grid-template-columns: 1.2fr .8fr;
-            gap: 1.5rem;
-            padding: 1.25rem 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,.06);
+        .projects-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            user-select: none;
+        }
+        
+        .projects-carousel {
+            cursor: grab;
+        }
+        
+        .projects-carousel:active {
+            cursor: grabbing;
+        }
+        
+        .project-card {
+            cursor: pointer;
+        }
+
+        /* Project Cards - Glass Morphism */
+        .project-card {
+            flex: 0 0 400px;
+            height: 500px;
             border-radius: 16px;
-            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateX(50px) translateY(20px);
+            animation: slideInCard 0.6s ease forwards;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .project-item:hover {
-            transform: translateY(-6px);
-            border-color: rgba(79,70,229,.35);
-            box-shadow: 0 18px 36px rgba(0,0,0,.28);
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            z-index: 2;
         }
 
-        .project-meta h3 {
-            font-size: 1.25rem;
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInCard {
+            to {
+                opacity: 1;
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        /* Project-specific Gradients */
+        .project-card[data-project="plaincents"] {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15));
+        }
+
+        .project-card[data-project="riskfecta"] {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(59, 130, 246, 0.15));
+        }
+
+        .project-card[data-project="vectormate"] {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(239, 68, 68, 0.15));
+        }
+
+        .project-card[data-project="portfolio"] {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(34, 211, 238, 0.15));
+        }
+
+        /* Hover Effects - Match Experience Section */
+        .project-card:hover:not(.expanded) {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(79, 70, 229, 0.4);
+            box-shadow: 0 20px 50px rgba(79, 70, 229, 0.3);
+        }
+
+        .project-card:hover:not(.expanded)::before {
+            transform: scaleX(1);
+        }
+        
+        .project-card.expanded {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(79, 70, 229, 0.5);
+            box-shadow: 0 25px 60px rgba(79, 70, 229, 0.4);
+        }
+        
+        .project-card.expanded::before {
+            transform: scaleX(1);
+        }
+
+        /* Expanded State */
+        .project-card.expanded {
+            height: auto;
+            min-height: 500px;
+            max-height: 90vh;
+            z-index: 100;
+        }
+
+        /* Project Icon */
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Project Content */
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: .4rem;
+            margin-bottom: 1rem;
             color: var(--light);
+            line-height: 1.3;
         }
 
-        .project-meta p {
-            color: var(--text-light);
-            font-size: .98rem;
+        /* Project Cover State (Default/Hover) */
+        .project-cover {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .project-card.expanded .project-cover {
+            display: none;
+        }
+
+        .project-question {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
+            margin: 1.5rem 0;
+            min-height: 60px;
+            transition: all 0.3s ease;
         }
 
+        .project-card:hover .project-question {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .project-cta {
+            color: #64ffda;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            animation: gentlePulse 2s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-cta {
+            transform: translateX(5px);
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Project Expanded State (On Click) */
+        .project-expanded {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            /* Hide scrollbar but keep functionality */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .project-expanded::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .project-card.expanded .project-expanded {
+            display: block;
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-section h4 {
+            color: #64ffda;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            margin-top: 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            padding-left: 1.2rem;
+            margin-bottom: 0.6rem;
+            position: relative;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #64ffda;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .feature-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-list strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Feature Divider */
+        .feature-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+            margin: 1.5rem 0;
+        }
+
+        /* Tech Pills */
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: .5rem;
-            align-content: start;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .tech-pill {
-            background: rgba(79, 70, 229, 0.12);
-            color: var(--primary-light);
-            border: 1px solid rgba(79, 70, 229, 0.25);
-            padding: .35rem .7rem;
-            border-radius: 999px;
-            font-size: .78rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 600;
-            transition: transform .2s ease, background .2s ease;
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tech-pill:nth-child(1) { animation-delay: 0.1s; }
+        .tech-pill:nth-child(2) { animation-delay: 0.15s; }
+        .tech-pill:nth-child(3) { animation-delay: 0.2s; }
+        .tech-pill:nth-child(4) { animation-delay: 0.25s; }
+        .tech-pill:nth-child(5) { animation-delay: 0.3s; }
+        .tech-pill:nth-child(6) { animation-delay: 0.35s; }
+        .tech-pill:nth-child(7) { animation-delay: 0.4s; }
+        .tech-pill:nth-child(8) { animation-delay: 0.45s; }
+        .tech-pill:nth-child(9) { animation-delay: 0.5s; }
+        .tech-pill:nth-child(10) { animation-delay: 0.55s; }
+        .tech-pill:nth-child(11) { animation-delay: 0.6s; }
+        .tech-pill:nth-child(12) { animation-delay: 0.65s; }
+
+        @keyframes fadeInPill {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tech-pill:hover {
-            background: rgba(79, 70, 229, 0.22);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px) scale(1.05);
         }
 
+        /* Project Actions */
         .project-actions {
+            margin-top: auto;
             display: flex;
-            gap: .6rem;
-            margin-top: .9rem;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        /* Close Button for Expanded Cards */
+        .project-close-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+
+        .project-card.expanded .project-close-btn {
+            display: flex;
+        }
+
+        .project-close-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: rotate(90deg);
         }
 
         .project-btn {
             display: inline-flex;
             align-items: center;
-            gap: .45rem;
-            padding: .5rem .9rem;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
             border-radius: 12px;
-            background: rgba(79,70,229,.12);
-            border: 1px solid rgba(79,70,229,.28);
-            color: var(--primary-light);
+            background: rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(79, 70, 229, 0.4);
+            color: var(--light);
             text-decoration: none;
             font-weight: 600;
-            transition: all .25s ease;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .project-btn:hover {
-            background: var(--primary);
-            color: #fff;
+            background: rgba(79, 70, 229, 0.4);
+            border-color: rgba(79, 70, 229, 0.6);
             transform: translateY(-2px);
-            box-shadow: 0 10px 22px rgba(79,70,229,.35);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
         }
 
-        @media (max-width: 900px) {
-            .project-item {
-                grid-template-columns: 1fr;
+        /* Carousel Indicators */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2.5rem;
+            padding: 0 4rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.2);
+        }
+
+        .indicator.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            width: 32px;
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .project-card {
+                flex: 0 0 350px;
+            }
+            
+            .projects-carousel-wrapper {
+                padding: 0 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-card {
+                flex: 0 0 320px;
+                height: 480px;
+            }
+            
+            .projects-carousel-wrapper {
+                padding: 0 2rem;
+            }
+            
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .carousel-indicators {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-card {
+                flex: 0 0 280px;
+                height: 450px;
+                padding: 1.5rem;
+            }
+            
+            .projects-carousel-wrapper {
+                padding: 0 1rem;
+            }
+            
+            .carousel-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
             }
         }
 
@@ -1765,18 +2179,112 @@
                 </div>
 
                 <div class="about-vision">
-                    <div class="vision-card" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1)); padding: 1.75rem; margin-bottom: 0; border: 1px solid rgba(79, 70, 229, 0.2);">
-                        <h4 style="color: var(--accent); font-size: 2.5rem; margin-bottom: 1.25rem; font-weight: 600;">
-                            <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>My 7-Month Vision
-                        </h4>
-                        <p style="color: var(--text-light); font-size: 2.00rem; line-height: 1.8; flex: 1;">
-                            I'm building a portfolio of <strong>4 ML-powered financial tools</strong>—starting with a stock market 
-                            analysis platform, expanding to budget optimization, portfolio risk analysis with Bloomberg Terminal 
-                            integration, and an AI education platform for Canadian newcomers. Each project builds on the last, 
-                            creating a progression from foundational ML to production-ready systems.
+                    <div class="vision-card"
+                         style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1));
+                                padding: 1.5rem;
+                                margin-bottom: 0;
+                                border: 1px solid rgba(79, 70, 229, 0.2);">
+                  
+                      <!-- Title -->
+                      <h4 style="
+                          background: linear-gradient(135deg, var(--primary), var(--accent));
+                          -webkit-background-clip: text;
+                          -webkit-text-fill-color: transparent;
+                          background-clip: text;
+                          font-size: 1.6rem;
+                          margin-bottom: 1.25rem;
+                          font-weight: 600;">
+                        <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>
+                        My 1-Year Vision
+                      </h4>
+                  
+                      <!-- Intro -->
+                      <div style="border-left: 3px solid var(--accent);
+                                  padding-left: 1.25rem;
+                                  margin-bottom: 1.25rem;">
+                        <p style="color: var(--light);
+                                  font-size: 1.05rem;
+                                  line-height: 1.7;">
+                          Over the next year, I’m building and shipping products that reflect how people
+                          actually experience finance, learning, and connection—not just how they look in theory.
                         </p>
+                      </div>
+                  
+                      <!-- Finance ML Journey -->
+                      <p style="color: var(--text-light);
+                                font-size: 1.02rem;
+                                line-height: 1.7;
+                                margin-bottom: 1rem;">
+                        <strong style="color: var(--primary-light);">
+                          Part 1 — Navigating Finance with ML
+                        </strong><br>
+                        My journey starts with understanding money at the most personal level.
+                        <a href="#projects" style="color: var(--accent); text-decoration: none; font-weight: 500;"> PlainCents </a>
+                        focuses on day-to-day financial behavior—spending, habits,
+                        and patterns. From there,
+                        <a href="#projects" style="color: var(--accent); text-decoration: none; font-weight: 500;"> RiskFecta </a>
+                        steps into uncertainty, risk,
+                        and decision-making under volatility using modern portfolio theory and forecasting.
+                        The path ends with an <a style="color: var(--accent); text-decoration: none; font-weight: 500;"> AI-powered financial education platform </a>, designed
+                        to help Canadian newcomers build confidence navigating an unfamiliar financial system.
+                        Together, these projects move from personal insight → institutional tools → accessible education.
+                      </p>
+                  
+                      <!-- Wanderers -->
+                      <p style="color: var(--text-light);
+                                font-size: 1.02rem;
+                                line-height: 1.7;
+                                margin-bottom: 1.25rem;">
+                        <strong style="color: var(--primary-light);">
+                          Part 2 — Wanderers (Coming Soon)
+                        </strong><br>
+                        Wanderers is an offline-first social discovery platform built around a simple belief:
+                        meaningful connections don’t come from infinite scrolling.
+                        The goal is to create low-pressure pathways for students to meet in the real world—through
+                        shared curiosity, exploration, and spontaneity. This project reflects my interest in
+                        building technology that nudges people <em>off</em> their screens, not deeper into them.
+                      </p>
+                  
+                      <!-- Divider -->
+                      <div style="border-top: 1px solid rgba(255,255,255,0.1);
+                                  padding-top: 1rem;">
+                        <p style="color: var(--text-muted);
+                                  font-size: 0.95rem;
+                                  line-height: 1.6;
+                                  margin-bottom: 0.75rem;">
+                          And because I love challenges and strategic thinking, I also built a neural network-driven chess engine—purely to push myself and learn how machines
+                          reason in complex decision spaces. Check out
+                          <a href="#projects"
+                             style="color: var(--accent);
+                                    text-decoration: none;
+                                    font-weight: 500;">
+                            VectorMate.
+                          </a>
+                        </p>
+                  
+                        <!-- CTA Links -->
+                        <p style="color: var(--text-muted);
+                                  font-size: 0.95rem;
+                                  line-height: 1.6;">
+                          Curious to collaborate or learn more?
+                          <a href="#contact"
+                             style="color: var(--accent); font-weight: 500; text-decoration: none;">
+                            Get in touch
+                          </a>
+                          or Connect on
+                          <a href="https://www.linkedin.com/in/kapiliyer29/"
+                             target="_blank"
+                             rel="noopener"
+                             style="color: var(--accent); font-weight: 500; text-decoration: none;">
+                            LinkedIn.
+                         </a>
+                        </p>
+                      </div>
                     </div>
-                </div>
+                  </div>
+                  
+                  
+                  
 
                 <div class="about-overview">
                     <div class="about-overview-card">
@@ -1811,7 +2319,7 @@
                                 </div>
                                 <div>
                                     <h4>Languages</h4>
-                                    <p>English, Hindi, Urdu, Marathi, Punjabi, Tamil, French</p>
+                                    <p>English, Hindi, Tamil, Marathi, French (elementary proficiency)</p>
                                 </div>
                             </div>
                             <div class="info-item">
@@ -1820,7 +2328,7 @@
                                 </div>
                                 <div>
                                     <h4>Location</h4>
-                                    <p>Waterloo, Canada</p>
+                                    <p>Toronto, Canada</p>
                                 </div>
                             </div>
                             <div class="info-item">
@@ -1829,7 +2337,7 @@
                                 </div>
                                 <div>
                                     <h4>Interests</h4>
-                                    <p>Innovation, Finance, Soccer, Martial Arts</p>
+                                    <p>Innovation, Entrepreneurship, Finance, Soccer, Chess, Martial Arts, Content Creation</p>
                                 </div>
                             </div>
                         </div>
@@ -1848,17 +2356,17 @@
                             <div class="edu-icon">🎓</div>
                             <div>
                                 <h3 class="edu-university">University of Waterloo</h3>
-                                <div class="edu-degree">Bachelor of Honors Mathematics (Co‑op)</div>
+                                <div class="edu-degree">Candidate for Bachelor of Honors Mathematics (Co‑op) (Expected 2030)</div>
                             </div>
                         </div>
                         <div class="edu-meta">
-                            <span class="chip">Specialization: Applied Math — Scientific Machine Learning</span>
-                            <span class="chip">Minors: Statistics & Computing</span>
+                            <span class="chip">Double Major: Applied Math — Scientific Machine Learning and Statistics</span>
+                            <span class="chip">Minor: Computing</span>
                         </div>
                         <div style="margin: 1.5rem 0;">
-                            <h4 style="color: var(--primary-light); font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 600;">What I'm Learning</h4>
+                            <h4 style="color: var(--primary-light); font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 600;">What I'm Learning:</h4>
                             <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 1rem;">
-                                <strong>Core Foundation:</strong> Calculus, Linear Algebra, Data Structures, Probability, Algorithm Design, Data Abstraction
+                                <strong>Relevant Coursework:</strong> Calculus I, II, Linear Algebra, Data Structures, Probability, Algorithm Design, Financial Statements
                             </p>
                             <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 1rem;">
                                 <strong>Specialization Focus:</strong> Machine Learning theory, Statistical modeling, Scientific computing, Numerical optimization
@@ -1891,45 +2399,67 @@
             <div class="timeline" id="timeline">
                 <div class="timeline-progress" style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:3px;height:0;background:linear-gradient(to bottom, var(--primary), var(--accent));border-radius:2px;"></div>
                 
-                <!-- Item 0: Dazia Consulting (MOST RECENT - TOP) -->
-                <div class="timeline-item" data-tip="Building AI for Canadian finance! 🤖">
-                    <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-0">
-                        <h3>Dazia Consulting Inc.</h3>
-                        <span class="role">ML Project Engineer</span>
-                        <span class="period">November 2025 - Present</span>
-                        <p class="description">Building AI-powered exam prep platform for Canadian financial certifications with NLP question generation, adaptive learning, and full-stack development serving 100+ beta users.</p>
-                        <div class="timeline-tags">
-                            <span class="timeline-tag">Machine Learning</span>
-                            <span class="timeline-tag">NLP</span>
-                            <span class="timeline-tag">Full-Stack</span>
-                            <span class="timeline-tag">Gemini API</span>
+                <!-- Item 1: WatStreet = UWaterloo's Quantitative Finance Design Team -->
+                <div class="timeline-item" data-tip="Quant ML research on market volatility contagion! 📈">
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-content" data-modal="modal-1">
+                        <h3>WatStreet - Uwaterloo's Quantitative Finance Design Team</h3>
+                        <span class="role">ML Engineer - Volatility Contagion Explorer</span>
+                        <span class="period">January 2026 - Present</span>
+                        <div class="drawer-learn-more">
+                            <span class="drawer-learn-more-btn">
+                                Come find out!
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
                         </div>
-                        
                         <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Developing NLP AI Chatbot question generator using Gemini API, spaCy and Hugging Face Transformers on 10,000+ pages of financial certification content (CSC, IFIC), generating 5,000+ practice questions targeting 85%+ accuracy</li>
-                                <li>Building full-stack study platform with React and Node.js, implementing freemium model with authentication and analytics across 8 topics, targeting 8% paid conversion rate from 100+ beta users</li>
-                                <li>Training ML models with TensorFlow and PyTorch, engineering feature extraction pipeline from financial text, optimizing inference to less than 2 seconds per question generation for production deployment</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">Python</span>
-                                    <span class="modal-skill-tag">React</span>
-                                    <span class="modal-skill-tag">Node.js</span>
-                                    <span class="modal-skill-tag">Gemini API</span>
-                                    <span class="modal-skill-tag">spaCy</span>
-                                    <span class="modal-skill-tag">Hugging Face</span>
-                                    <span class="modal-skill-tag">TensorFlow</span>
-                                    <span class="modal-skill-tag">PyTorch</span>
-                                    <span class="modal-skill-tag">NLP</span>
+                            <p class="description">Research-focused ML project modeling volatility contagion across U.S. equity markets using temporal graph neural networks to capture dynamic inter-asset dependencies.</p>
+                            <div class="timeline-tags">
+                                <span class="timeline-tag">Quantitative Finance</span>
+                                <span class="timeline-tag">Graph Neural Networks</span>
+                                <span class="timeline-tag">Time Series</span>
+                                <span class="timeline-tag">Risk Modeling</span>
+                                <span class="timeline-tag">Statistical ML</span>
+
+                                <div class="drawer-learn-more">
+                                    <span class="drawer-learn-more-btn">
+                                        Learn More
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Dazia Consulting -->
+                <div class="timeline-item" data-tip="Building AI tutor for Canadian finance! 🤖">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content" data-modal="modal-2">
+                        <h3>Dazia Consulting Inc.</h3>
+                        <span class="role">AI Engineer</span>
+                        <span class="period">November 2025 - January 2026</span>
+                        <div class="drawer-learn-more">
+                            <span class="drawer-learn-more-btn">
+                                Come find out!
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                        <div class="timeline-hover-drawer">
+                        <p class="description">Built a production-grade AI tutoring system for Canadian financial certifications (CSC, IFIC),
+                            transforming early prototypes into scalable RAG pipelines powering contextual exam
+                            question generation and tutor responses.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">RAG Systems</span>
+                            <span class="timeline-tag">Applied NLP</span>
+                            <span class="timeline-tag">Full-Stack AI</span>
+                            <span class="timeline-tag">Freemium Product</span>
+                        </div>
+
                             <div class="drawer-learn-more">
                                 <span class="drawer-learn-more-btn">
-                                    Click for full details
+                                    Learn More
                                     <i class="fas fa-arrow-right"></i>
                                 </span>
                             </div>
@@ -1937,40 +2467,30 @@
                     </div>
                 </div>
 
-                <!-- Item 1: DSC Outreach -->
+                <!-- Item 3: DSC Outreach -->
                 <div class="timeline-item" data-tip="Leading CxC 2026! 🚀">
                     <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-1">
+                    <div class="timeline-content" data-modal="modal-3">
                         <h3>UW Data Science Club</h3>
                         <span class="role">Outreach Coordinator</span>
                         <span class="period">September 2025 - Present</span>
-                        <p class="description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon (CxC 2026), building strategic relationships with industry leaders.</p>
+                        <div class="drawer-learn-more">
+                            <span class="drawer-learn-more-btn">
+                                Come find out!
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                        <div class="timeline-hover-drawer">
+                        <p class="description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon (CxC 2026) for 300+ participants, building strategic relationships with industry leaders.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag">Corporate Outreach</span>
                             <span class="timeline-tag">Sponsorships</span>
                             <span class="timeline-tag">Apollo.io</span>
                         </div>
-                        
-                        <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Coordinated outreach for CxC 2026, engaging 30+ sponsors for 200+ participants</li>
-                                <li>Achieved 25% response rate using Apollo.io & strategic messaging</li>
-                                <li>Secured partnerships with UW Math Fund, Hugging Face, Techyon</li>
-                                <li>Managing communications and deliverables for February 2026 hackathon</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">Apollo.io</span>
-                                    <span class="modal-skill-tag">B2B Outreach</span>
-                                    <span class="modal-skill-tag">Event Coordination</span>
-                                    <span class="modal-skill-tag">Strategic Messaging</span>
-                                </div>
-                            </div>
+    
                             <div class="drawer-learn-more">
                                 <span class="drawer-learn-more-btn">
-                                    Click for full details
+                                    Learn More
                                     <i class="fas fa-arrow-right"></i>
                                 </span>
                             </div>
@@ -1978,163 +2498,30 @@
                     </div>
                 </div>
 
-                <!-- Item 2: UW FinTech (NEW) -->
-                <div class="timeline-item" data-tip="Storytelling through finance 🎬">
-                    <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-2">
-                        <h3>UW FinTech</h3>
-                        <span class="role">Content Creator & Multimedia Coordinator</span>
-                        <span class="period">May 2025 - Present</span>
-                        <p class="description">Producing video content and multimedia for fintech education initiatives, collaborating with industry partners like Relay Financial to create resources for students breaking into fintech careers.</p>
-                        <div class="timeline-tags">
-                            <span class="timeline-tag">Video Editing</span>
-                            <span class="timeline-tag">Content Creation</span>
-                            <span class="timeline-tag">Storytelling</span>
-                        </div>
-                        
-                        <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Edited promotional reels using DaVinci Resolve, Adobe Premiere Pro, CapCut</li>
-                                <li>Collaborated with Relay Financial for networking event content & co-op advice</li>
-                                <li>Created fintech career guides and storytelling content for aspiring professionals</li>
-                                <li>Combined technical editing skills with financial industry knowledge</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">DaVinci Resolve</span>
-                                    <span class="modal-skill-tag">Adobe Premiere Pro</span>
-                                    <span class="modal-skill-tag">CapCut</span>
-                                    <span class="modal-skill-tag">Content Strategy</span>
-                                    <span class="modal-skill-tag">Storytelling</span>
-                                </div>
-                            </div>
-                            <div class="drawer-learn-more">
-                                <span class="drawer-learn-more-btn">
-                                    Click for full details
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3: DSC Social Media (Past Role) -->
-                <div class="timeline-item" data-tip="Built the club's digital presence 📱">
-                    <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-3">
-                        <h3>UW Data Science Club</h3>
-                        <span class="role">Social/Multimedia Coordinator</span>
-                        <span class="period">April 2025 - August 2025</span>
-                        <p class="description">Managed the club's social media presence, creating engaging content to promote data science workshops, industry panels, and technical events across Instagram and LinkedIn.</p>
-                        <div class="timeline-tags">
-                            <span class="timeline-tag">Social Media</span>
-                            <span class="timeline-tag">Content Design</span>
-                            <span class="timeline-tag">Community</span>
-                        </div>
-                        
-                        <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Managed Instagram and LinkedIn, promoting workshops and industry panels</li>
-                                <li>Designed Reels, stories, and event graphics to boost student engagement</li>
-                                <li>Aligned posts with club goals, maintaining professional brand voice</li>
-                                <li>Highlighted initiatives like Leetcode prep, alumni chats, and hackathons</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">Social Media Management</span>
-                                    <span class="modal-skill-tag">Graphic Design</span>
-                                    <span class="modal-skill-tag">Content Scheduling</span>
-                                    <span class="modal-skill-tag">Brand Voice</span>
-                                </div>
-                            </div>
-                            <div class="drawer-learn-more">
-                                <span class="drawer-learn-more-btn">
-                                    Click for full details
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4: GRC -->
-                <div class="timeline-item" data-tip="Leveling up in partnerships 🤝">
-                    <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-4">
-                        <h3>UW Governance Risk Compliance Association</h3>
-                        <span class="role">VP of External Relations</span>
-                        <span class="period">April 2025 - August 2025</span>
-                        <p class="description">Led external partnerships and strategic initiatives for a premier risk management student association, serving 100+ students with industry engagement across fintech, cybersecurity, and regulatory compliance.</p>
-                        <div class="timeline-tags">
-                            <span class="timeline-tag">Partnerships</span>
-                            <span class="timeline-tag">Event Management</span>
-                            <span class="timeline-tag">Government Relations</span>
-                        </div>
-                        
-                        <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Built partnerships with 20+ fintech & cybersecurity professionals</li>
-                                <li>Coordinated with Ontario Treasury Board & consulting firms</li>
-                                <li>Achieved 40% response rate through personalized LinkedIn outreach</li>
-                                <li>Led cross-club collaboration with UW Venture, UW FinTech, UW Data Science Club</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">Strategic Planning</span>
-                                    <span class="modal-skill-tag">B2B Communication</span>
-                                    <span class="modal-skill-tag">LinkedIn Networking</span>
-                                    <span class="modal-skill-tag">Government Relations</span>
-                                </div>
-                            </div>
-                            <div class="drawer-learn-more">
-                                <span class="drawer-learn-more-btn">
-                                    Click for full details
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 5: STEAM Change -->
+                
+                <!-- Item 4: STEAM Change -->
                 <div class="timeline-item" data-tip="Inspiring young minds ✨">
                     <div class="timeline-date">2023</div>
-                    <div class="timeline-content" data-modal="modal-5">
+                    <div class="timeline-content" data-modal="modal-4">
                         <h3>STEAM Change Mentorship Program</h3>
                         <span class="role">Youth Lead Mentor</span>
                         <span class="period">September 2023 - June 2024</span>
+                        <div class="drawer-learn-more">
+                            <span class="drawer-learn-more-btn">
+                                Come find out!
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                        <div class="timeline-hover-drawer">
                         <p class="description">Led educational initiatives combining STEAM for young learners and fostered project-based learning and mentoring.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag">Mentoring</span>
                             <span class="timeline-tag">STEAM Education</span>
                         </div>
-                        
-                        <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Mentored elementary & middle school students in STEAM projects</li>
-                                <li>Developed curriculum for UN Sustainable Development Goals</li>
-                                <li>Fostered creativity & problem-solving skills in young learners</li>
-                                <li>Collaborated with educators to integrate STEAM concepts</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">Curriculum Development</span>
-                                    <span class="modal-skill-tag">Project-Based Learning</span>
-                                    <span class="modal-skill-tag">Mentoring</span>
-                                    <span class="modal-skill-tag">STEAM Education</span>
-                                </div>
-                            </div>
+
                             <div class="drawer-learn-more">
                                 <span class="drawer-learn-more-btn">
-                                    Click for full details
+                                    Learn More
                                     <i class="fas fa-arrow-right"></i>
                                 </span>
                             </div>
@@ -2142,39 +2529,29 @@
                     </div>
                 </div>
                         
-                <!-- Item 6: Code Krafters -->
+                <!-- Item 5: Code Krafters -->
                 <div class="timeline-item" data-tip="Built a coding community 💡">
                     <div class="timeline-date">2023</div>
-                    <div class="timeline-content" data-modal="modal-6">
+                    <div class="timeline-content" data-modal="modal-5">
                         <h3>Code Krafters: Clarkson Coding Club</h3>
                         <span class="role">Founder & President</span>
                         <span class="period">September 2023 - June 2024</span>
-                        <p class="description">Established and led a student-driven coding club focused on collaborative learning and creative projects.</p>
+                        <div class="drawer-learn-more">
+                            <span class="drawer-learn-more-btn">
+                                Come find out!
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                        <div class="timeline-hover-drawer">
+                        <p class="description">Established and led a student-driven coding club focused on preparing for Waterloo CCC coding competition, collaborative learning and creative projects.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag">Leadership</span>
                             <span class="timeline-tag">Community Building</span>
                         </div>
                         
-                        <div class="timeline-hover-drawer">
-                            <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                            <ul>
-                                <li>Founded student coding club from scratch</li>
-                                <li>Led collaborative learning sessions for students across skill levels</li>
-                                <li>Supported students preparing for Waterloo CCC competition</li>
-                                <li>Built community fostering creativity & technical growth</li>
-                            </ul>
-                            <div class="timeline-hover-skills">
-                                <h4><i class="fas fa-code"></i>Skills:</h4>
-                                <div class="modal-skill-tags">
-                                    <span class="modal-skill-tag">Leadership</span>
-                                    <span class="modal-skill-tag">Community Building</span>
-                                    <span class="modal-skill-tag">Mentoring</span>
-                                    <span class="modal-skill-tag">Programming</span>
-                                </div>
-                            </div>
                             <div class="drawer-learn-more">
                                 <span class="drawer-learn-more-btn">
-                                    Click for full details
+                                    Learn More
                                     <i class="fas fa-arrow-right"></i>
                                 </span>
                             </div>
@@ -2187,25 +2564,38 @@
 
     <!-- Experience Modals -->
     
-    <!-- Modal 0: Dazia Consulting (NEW - FIRST) -->
-    <div class="experience-modal" id="modal-0">
+    <!-- Modal 1:  WatStreet -->
+    <div class="experience-modal" id="modal-1">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-0')">
+            <button class="modal-close" onclick="closeModal('modal-1')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
-                <h3>Dazia Consulting Inc.</h3>
-                <span class="modal-role">ML Project Engineer</span>
-                <span class="modal-period">November 2025 - Present</span>
+                <h3>WatStreet - Uwaterloo's Quantitative Finance Design Team</h3>
+                <span class="modal-role">ML Engineer - Volatitly Contagion Explorer</span>
+                <span class="modal-period">January 2026 - Present</span>
             </div>
-            <p class="modal-description">Building AI-powered exam preparation platform for Canadian financial certifications (CSC, IFIC), developing NLP-based question generation, adaptive learning systems, and full-stack web application serving 100+ beta users.</p>
+            <p class="modal-description">Contributing to a research-oriented quantitative finance project focused on 
+                modeling and predicting volatility contagion across U.S. equity markets. 
+                The goal is to understand how shocks propagate between assets over time by 
+                combining temporal graph neural networks with classical econometric benchmarks.
+            </p>
             
             <div class="modal-achievements">
-                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <h4><i class="fas fa-star"></i>Key Contributions:</h4>
                 <ul>
-                    <li>Developing NLP AI Chatbot question generator using Gemini API, spaCy and Hugging Face Transformers on 10,000+ pages of financial certification content (CSC, IFIC), generating 5,000+ practice questions targeting 85%+ accuracy</li>
-                    <li>Building full-stack study platform with React and Node.js, implementing freemium model with authentication and analytics across 8 topics, targeting 8% paid conversion rate from 100+ beta users</li>
-                    <li>Training ML models with TensorFlow and PyTorch, engineering feature extraction pipeline from financial text, optimizing inference to less than 2 seconds per question generation for production deployment</li>
+                    <li>Designing and training <strong>Temporal Graph Neural Networks (T-GNNs)</strong> 
+                        to model rolling correlation structures and volatility spillovers across 
+                        <strong>S&P 500 assets</strong>.
+                    </li>
+                    <li> Benchmarking <strong>Graph Attention Network</strong> predictions against <strong>GARCH</strong> and <strong>HAR-RV</strong> econometric baselines using <strong>RMSE</strong> and <strong>Diebold-Mariano tests</strong>.</li>   
+                    <li>Implementing <strong>rolling-window training and evaluation</strong> pipelines 
+                        to avoid look-ahead bias and assess model stability under different market regimes.
+                    </li>
+                    <li>Applying <strong>sparse covariance estimation</strong> techniques 
+                        (Graphical Lasso) to analyze dynamic inter-asset dependency graphs during 
+                        periods of elevated market stress.
+                    </li>
                 </ul>
             </div>
 
@@ -2213,26 +2603,106 @@
                 <h4>Skills & Tools Used:</h4>
                 <div class="modal-skill-tags">
                     <span class="modal-skill-tag">Python</span>
-                    <span class="modal-skill-tag">React</span>
-                    <span class="modal-skill-tag">Node.js</span>
-                    <span class="modal-skill-tag">Gemini API</span>
-                    <span class="modal-skill-tag">spaCy</span>
-                    <span class="modal-skill-tag">Hugging Face</span>
-                    <span class="modal-skill-tag">TensorFlow</span>
                     <span class="modal-skill-tag">PyTorch</span>
-                    <span class="modal-skill-tag">Flask/Django</span>
-                    <span class="modal-skill-tag">NLP</span>
-                    <span class="modal-skill-tag">ML Training</span>
-                    <span class="modal-skill-tag">Feature Engineering</span>
+                    <span class="modal-skill-tag">Temporal Graph Neural Networks</span>
+                    <span class="modal-skill-tag">Graph Attention Networks</span>
+                    <span class="modal-skill-tag">Time Series Modeling</span>
+                    <span class="modal-skill-tag">Volatility Modeling</span>
+                    <span class="modal-skill-tag">GARCH</span>
+                    <span class="modal-skill-tag">HAR-RV</span>
+                    <span class="modal-skill-tag">Graphical Lasso</span>
+                    <span class="modal-skill-tag">Statistical Testing</span>
+                    <span class="modal-skill-tag">RMSE</span>
+                    <span class="modal-skill-tag">Diebold–Mariano Test</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2:  Dazia Consulting -->
+    <div class="experience-modal" id="modal-2">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-2')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Dazia Consulting Inc.</h3>
+                <span class="modal-role">AI Engineer</span>
+                <span class="modal-period">November 2025 - January 2026</span>
+            </div>
+            <p class="modal-description">Designed and implemented a full-stack AI tutoring system for Canadian financial
+                certification education, evolving early prototypes into production-ready
+                retrieval-augmented generation (RAG) pipelines supporting contextual exam
+                question generation and tutor responses.
+            </p>
+
+            <!-- Demo CTA -->
+        <div class="modal-demo"
+        style="margin: 1.5rem 0;
+               padding: 1rem;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.03);">
+
+        <p style="color: var(--light);
+                 font-size: 0.95rem;
+                margin-bottom: 0.75rem;">
+        <strong>Project Walkthrough:</strong>  
+        Short demo showcasing the TutorBot for IFIC and CSC trained content with question generator, chatbot, content summarizer, flashcards
+        and rate limiting.
+        </p>
+
+        <a href="https://drive.google.com/file/d/1TTuzL3EcjVoMIJmYHN_1QO-y-Vy2uLKf/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+        <i class="fas fa-play-circle"></i>
+        Watch Demo (2–3 min)
+        </a>
+        </div>
+
+            
+            <div class="modal-achievements">
+                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <ul>
+                    <li>Expanded a RAG system processing <strong>1,500+ pages</strong> of CSC and IFIC
+                        certification content using <strong>Google Gemini 2.5 Flash</strong> and
+                        <strong>ChromaDB</strong> to generate grounded exam questions and explanations.
+                    </li>
+                    <li>Built <strong>Express.js REST APIs</strong> and a <strong>React frontend</strong>,
+                        implementing <strong>CORS</strong> and rate-limiting to enforce freemium usage
+                        constraints in a production environment.
+                    </li>
+                    <li>Reduced LLM token usage by approximately <strong>30%</strong> through prompt
+                        engineering and retrieval optimization, deploying a containerized vector
+                        store using <strong>Docker</strong>.
+                    </li>
+                    <li>Structured end-to-end pipelines spanning document ingestion, embedding,
+                        retrieval, and response generation with a focus on reliability,
+                        scalability, and cost control.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-skills">
+                <h4>Skills & Tools Used:</h4>
+                <div class="modal-skill-tags">
+                    <span class="modal-skill-tag">Python</span>
+                <span class="modal-skill-tag">Express.js</span>
+                <span class="modal-skill-tag">React</span>
+                <span class="modal-skill-tag">Google Gemini API</span>
+                <span class="modal-skill-tag">ChromaDB</span>
+                <span class="modal-skill-tag">RAG Pipelines</span>
+                <span class="modal-skill-tag">Prompt Engineering</span>
+                <span class="modal-skill-tag">Docker</span>
+                <span class="modal-skill-tag">NLP Systems</span>
+                <span class="modal-skill-tag">Production ML</span>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Modal 1: UW Data Science Club - Outreach -->
-    <div class="experience-modal" id="modal-1">
+    <!-- Modal 3: UW Data Science Club - Outreach -->
+    <div class="experience-modal" id="modal-3">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-1')">
+            <button class="modal-close" onclick="closeModal('modal-3')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
@@ -2240,15 +2710,29 @@
                 <span class="modal-role">Outreach Coordinator</span>
                 <span class="modal-period">September 2025 - Present</span>
             </div>
-            <p class="modal-description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon and building strategic relationships with industry leaders.</p>
+            <p class="modal-description">Coordinating corporate partnership outreach for Canada's largest student-run data science hackathon for 300+ participants and building strategic relationships with industry leaders.</p>
             
             <div class="modal-achievements">
-                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
+                <h4><i class="fas fa-star"></i>Key Contributions:</h4>
                 <ul>
-                    <li>Coordinate corporate partnership outreach for Canada's largest student-run data science hackathon (CxC 2026), engaging 30+ potential sponsors to secure funding and mentorship for 200+ participants</li>
-                    <li>Utilized Apollo.io and professional B2B outreach tools to identify and engage target companies, achieving a 25% response rate through strategic messaging and personalized proposals</li>
-                    <li>Collaborate with CxC organizing team and past sponsors (UW Math Endowment Fund, Hugging Face, Techyon) to develop sponsor activation strategies, managing communications and deliverables across 3 cross-club partnerships</li>
-                    <li>Build relationships with fintech and technology companies to provide students with industry exposure, working toward confirmed partnerships for February 2026 hackathon</li>
+                    <li>Coordinate <strong>corporate partnership outreach</strong> for
+                        <strong>Canada’s largest student-run data science hackathon (CxC 2026)</strong>,
+                        engaging <strong>30+ potential sponsors</strong> to secure funding and mentorship
+                        for <strong>300+ participants</strong>
+                    </li>
+                    <li>Utilized <strong>Apollo.io</strong> and professional <strong>B2B outreach tools</strong>
+                        to identify and engage target companies, achieving a
+                        <strong>35% response rate</strong> through strategic messaging and personalized proposals
+                    </li>
+                    <li>Collaborate with the CxC organizing team and sponsors
+                        (<strong>UW Math Endowment Fund, Tangerine, KPMG, Accenture</strong>) to develop
+                        <strong>sponsor activation strategies</strong>, managing communications and deliverables
+                        across <strong>3 cross-club partnerships</strong>
+                    </li>
+                    <li>Build relationships with <strong>fintech and technology companies</strong> to provide
+                        students with industry exposure, working toward
+                        <strong>confirmed partnerships</strong> for the <strong>February 2026 hackathon</strong>
+                    </li>
                 </ul>
             </div>
 
@@ -2267,125 +2751,11 @@
             </div>
         </div>
     </div>
-                
-    <!-- Modal 2: UW FinTech (NEW) -->
-    <div class="experience-modal" id="modal-2">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-2')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-header">
-                <h3>UW FinTech</h3>
-                <span class="modal-role">Content Creator & Multimedia Coordinator</span>
-                <span class="modal-period">May 2025 - Present</span>
-            </div>
-            <p class="modal-description">Producing video content and multimedia for fintech education initiatives, collaborating with industry partners like Relay Financial to create resources for students breaking into fintech careers.</p>
-            
-            <div class="modal-achievements">
-                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                <ul>
-                    <li>Edited promotional reels using DaVinci Resolve, Adobe Premiere Pro, CapCut for fintech workshops and events</li>
-                    <li>Collaborated with Relay Financial for networking event content and co-op advice for aspiring fintech professionals</li>
-                    <li>Created fintech career guides and storytelling content combining technical editing skills with financial industry knowledge</li>
-                    <li>Managed social media channels to promote fintech education and industry networking opportunities</li>
-                </ul>
-            </div>
-
-            <div class="modal-skills">
-                <h4>Skills & Tools Used:</h4>
-                <div class="modal-skill-tags">
-                    <span class="modal-skill-tag">DaVinci Resolve</span>
-                    <span class="modal-skill-tag">Adobe Premiere Pro</span>
-                    <span class="modal-skill-tag">CapCut</span>
-                    <span class="modal-skill-tag">Content Strategy</span>
-                    <span class="modal-skill-tag">Storytelling</span>
-                    <span class="modal-skill-tag">Video Editing</span>
-                    <span class="modal-skill-tag">Social Media</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3: UW Data Science Club - Social (NEW) -->
-    <div class="experience-modal" id="modal-3">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-3')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-header">
-                <h3>UW Data Science Club</h3>
-                <span class="modal-role">Social/Multimedia Coordinator</span>
-                <span class="modal-period">April 2025 - August 2025</span>
-            </div>
-            <p class="modal-description">Managed the club's social media presence, creating engaging content to promote data science workshops, industry panels, and technical events across Instagram and LinkedIn.</p>
-            
-            <div class="modal-achievements">
-                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                <ul>
-                    <li>Managed Instagram and LinkedIn, promoting workshops and industry panels for 500+ club members</li>
-                    <li>Designed Reels, stories, and event graphics to boost student engagement by 40%</li>
-                    <li>Aligned posts with club goals, maintaining professional brand voice across all platforms</li>
-                    <li>Highlighted initiatives like Leetcode prep, alumni chats, and hackathons to attract new members</li>
-                </ul>
-            </div>
-
-            <div class="modal-skills">
-                <h4>Skills & Tools Used:</h4>
-                <div class="modal-skill-tags">
-                    <span class="modal-skill-tag">Social Media Management</span>
-                    <span class="modal-skill-tag">Graphic Design</span>
-                    <span class="modal-skill-tag">Canva</span>
-                    <span class="modal-skill-tag">Instagram</span>
-                    <span class="modal-skill-tag">LinkedIn</span>
-                    <span class="modal-skill-tag">Content Creation</span>
-                </div>
-            </div>
-        </div>
-    </div>
-                
-    <!-- Modal 4: UW GRC -->
+    
+    <!-- Modal 4: STEAM Change -->
     <div class="experience-modal" id="modal-4">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-4')">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-header">
-                <h3>UW Governance Risk Compliance Association</h3>
-                <span class="modal-role">VP of External Relations</span>
-                <span class="modal-period">April 2025 - August 2025</span>
-            </div>
-            <p class="modal-description">Leading external partnerships and strategic initiatives for a premier risk management student association at the University of Waterloo, serving 100+ students.</p>
-            
-            <div class="modal-achievements">
-                <h4><i class="fas fa-star"></i>Key Achievements:</h4>
-                <ul>
-                    <li>Built and maintained partnerships with 20+ professionals in fintech, cybersecurity, and regulatory compliance to support speaker events, workshops, and mentorship programs serving 100+ students</li>
-                    <li>Coordinated with government bodies (Ontario Treasury Board Secretariat), consulting firms, and fintech startups in partnership with UW Fintech including Relay Financial to host interactive networking sessions introducing students to real-world GRC and finance practices</li>
-                    <li>Managed external communications including outreach emails, LinkedIn networking, and follow-ups, achieving 40% response rate through personalized stakeholder engagement strategies</li>
-                    <li>Led cross-club collaboration initiatives with UW Venture, UW FinTech, and UW Data Science Club to co-host events on emerging technology risk and data governance, expanding club reach by 30%</li>
-                </ul>
-            </div>
-
-            <div class="modal-skills">
-                <h4>Skills & Tools Used:</h4>
-                <div class="modal-skill-tags">
-                    <span class="modal-skill-tag">Strategic Planning</span>
-                    <span class="modal-skill-tag">Partnership Development</span>
-                    <span class="modal-skill-tag">Event Management</span>
-                    <span class="modal-skill-tag">LinkedIn Networking</span>
-                    <span class="modal-skill-tag">Stakeholder Engagement</span>
-                    <span class="modal-skill-tag">Cross-functional Collaboration</span>
-                    <span class="modal-skill-tag">Government Relations</span>
-                    <span class="modal-skill-tag">B2B Communication</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal 5: STEAM Change -->
-    <div class="experience-modal" id="modal-5">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-5')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
@@ -2420,10 +2790,10 @@
         </div>
     </div>
                 
-    <!-- Modal 6: Code Krafters -->
-    <div class="experience-modal" id="modal-6">
+    <!-- Modal 5: Code Krafters -->
+    <div class="experience-modal" id="modal-5">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-6')">
+            <button class="modal-close" onclick="closeModal('modal-5')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
@@ -2431,7 +2801,7 @@
                 <span class="modal-role">Founder & President</span>
                 <span class="modal-period">September 2023 - June 2024</span>
             </div>
-            <p class="modal-description">Established and led a student-driven coding club focused on collaborative learning and creative project development.</p>
+            <p class="modal-description">Established and led a student-driven coding club focused on preparing for Waterloo CCC coding competition, collaborative learning and creative project development.</p>
             
             <div class="modal-achievements">
                             <h4><i class="fas fa-star"></i>Key Achievements:</h4>
@@ -2460,80 +2830,280 @@
                     </div>
 
     <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <div class="projects-header">
-                <h2 class="section-title">Projects</h2>
-            </div>
+<section id="projects" class="section projects">
+    <div class="container">
+        <div class="projects-header">
+            <h2 class="section-title">Projects</h2>
+        </div>
+        
+        <!-- Horizontal Slider Carousel -->
+        <div class="projects-carousel-wrapper">
+            <button class="carousel-nav carousel-prev" aria-label="Previous project">
+                <i class="fas fa-chevron-left"></i>
+            </button>
             
-            <!-- New vertical list of projects -->
-            <div class="project-list">
-                <!-- ML Stock Platform -->
-                <div class="project-item">
-                    <div class="project-meta">
-                        <h3>ML-Powered Stock Market Analysis Platform</h3>
-                        <p>End-to-end ML platform analyzing 10,000+ tickers with classification and regression models, engineered indicators, and a Streamlit dashboard for real-time insights.</p>
-                        <div class="project-actions">
-                            <a class="project-btn" href="#contact"><i class="fas fa-info-circle"></i> Learn More</a>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">pandas</span>
-                        <span class="tech-pill">NumPy</span>
-                        <span class="tech-pill">scikit-learn</span>
-                        <span class="tech-pill">matplotlib</span>
-                        <span class="tech-pill">Streamlit</span>
-                        <span class="tech-pill">Git/GitHub</span>
-                        <span class="tech-pill">Time Series</span>
-                        </div>
-                        </div>
+            <div class="projects-carousel" id="projectsCarousel">
+                <div class="projects-track" id="projectsTrack">
+                    <!-- PlainCents -->
+                    <div class="project-card" data-project="plaincents">
+                        <div class="project-icon">💰</div>
+                        <div class="project-content">
+                            <h3>PlainCents - Personal Finance Analytics Dashboard</h3>
+                            
+                            <!-- Cover State (Default/Hover) -->
+                            <div class="project-cover">
+                                <p class="project-question">What if managing your finances was as easy as uploading a CSV?</p>
+                                <div class="project-cta">Discover how →</div>
+                            </div>
+                            
+                            <!-- Expanded State (On Click) -->
+                            <div class="project-expanded">
+                                <div class="feature-section">
+                                    <h4>Key Features</h4>
+                                    <ul class="feature-list">
+                                        <li>Automated expense categorization using <strong>K-Means clustering</strong> across <strong>8 spending categories</strong></li>
+                                        <li><strong>Random Forest</strong> forecasting models predicting <strong>3-month spending</strong> with <strong>80%+ accuracy</strong></li>
+                                        <li>Real-time portfolio tracking with <strong>yfinance API</strong> integration</li>
+                                        <li>Interactive <strong>PowerBI dashboards</strong> for comprehensive business intelligence</li>
+                                        <li>Complete data pipeline: collection → analysis → visualization</li>
+                                    </ul>
+                                </div>
 
-                <!-- ChessHacks Project (NEW) -->
-                <div class="project-item">
-                    <div class="project-meta">
-                        <h3>Neural Network Chess Strategy Engine 
-                            <span style="display:inline-block;padding:0.2rem 0.6rem;border-radius:12px;font-size:0.7rem;font-weight:600;margin-left:0.5rem;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(167,139,250,0.2));border:1px solid rgba(139,92,246,0.4);color:#a78bfa;">Hackathon Project</span>
-                        </h3>
-                        <p>Building chess engine with PyTorch neural networks for position evaluation, training on chess datasets to predict optimal moves. Developed during ChessHacks hackathon to learn game AI fundamentals.</p>
-                        <div class="project-actions">
-                            <a class="project-btn" href="#contact"><i class="fas fa-info-circle"></i> Learn More</a>
+                                <!-- NEW: Project Links -->
+                                <div class="project-links">
+                                    <a href="https://github.com/Kapil-Iyer/PlainCents" target="_blank" class="project-link">
+                                        <i class="fab fa-github"></i> Source
+                                    </a>
+                                </div>
+                                
+                                <div class="feature-divider"></div>
+                                
+                                <div class="feature-section">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tech">
+                                        <span class="tech-pill">Python</span>
+                                        <span class="tech-pill">scikit-learn</span>
+                                        <span class="tech-pill">SQLite</span>
+                                        <span class="tech-pill">Pandas</span>
+                                        <span class="tech-pill">NumPy</span>
+                                        <span class="tech-pill">Matplotlib</span>
+                                        <span class="tech-pill">yfinance</span>
+                                        <span class="tech-pill">PowerBI</span>
+                                        <span class="tech-pill">K-Means</span>
+                                        <span class="tech-pill">Random Forest</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="project-actions">
+                                <a class="project-btn" href="https://github.com/Kapil-Iyer/PlainCents" target="_blank">
+                                    <i class="fab fa-github"></i> Source
+                                </a>
+                                <button class="project-close-btn" aria-label="Close expanded card">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-tech">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">PyTorch</span>
-                        <span class="tech-pill">Next.js</span>
-                        <span class="tech-pill">python-chess</span>
-                        <span class="tech-pill">Deep Learning</span>
-                        <span class="tech-pill">CNNs</span>
-                        <span class="tech-pill">Neural Networks</span>
-                        <span class="tech-pill">Game AI</span>
-                    </div>
-                    </div>
-                <!-- Portfolio -->
-<div class="project-item">
-    <div class="project-meta">
-        <h3>Personal Portfolio Website</h3>
-        <p>Responsive portfolio with interactive experience tree, ML-focused skills, and smooth animations—designed for speed and clarity.</p>
-        <div class="project-actions">
-            <a class="project-btn" href="https://github.com/Kapil-Iyer/kapil-iyer-portfolio" target="_blank">
-                <i class="fab fa-github"></i> Source
-            </a>
-        </div>
-    </div>
-    <div class="project-tech">
-        <span class="tech-pill">HTML</span>
-        <span class="tech-pill">CSS</span>
-        <span class="tech-pill">JavaScript</span>
-        <span class="tech-pill">Responsive Design</span>
-    </div>
-</div>
 
+                    <!-- RiskFecta -->
+                    <div class="project-card" data-project="riskfecta">
+                        <div class="project-icon">📊</div>
+                        <div class="project-content">
+                            <h3>RiskFecta - Quantitative Portfolio Intelligence Platform</h3>
+                            
+                            <!-- Cover State (Default/Hover) -->
+                            <div class="project-cover">
+                                <p class="project-question">How do institutional investors optimize portfolios? Now retail investors can too.</p>
+                                <div class="project-cta">Explore the platform →</div>
+                            </div>
+                            
+                            <!-- Expanded State (On Click) -->
+                            <div class="project-expanded">
+                                <div class="feature-section">
+                                    <h4>Key Features</h4>
+                                    <ul class="feature-list">
+                                        <li>Hybrid forecasting engine combining <strong>XGBoost</strong> and <strong>LSTM</strong> deep learning models</li>
+                                        <li><strong>Rolling-window cross-validation</strong> for robust <strong>30-day return predictions</strong></li>
+                                        <li><strong>Modern Portfolio Theory</strong> optimization calculating <strong>Efficient Frontier</strong> allocations</li>
+                                        <li><strong>Bloomberg Terminal</strong> data integration with <strong>PostgreSQL</strong> backend</li>
+                                        <li>Interactive <strong>Plotly dashboards</strong> on <strong>Streamlit Cloud</strong> + <strong>Tableau</strong> reporting</li>
+                                    </ul>
+                                </div>
 
+                                <!-- NEW: Project Links -->
+                                <div class="project-links">
+                                    <a href="https://github.com/Kapil-Iyer/RiskFecta" target="_blank" class="project-link">
+                                        <i class="fab fa-github"></i> Source
+                                    </a>
+                                </div>
+                                
+                                <div class="feature-divider"></div>
+                                
+                                <div class="feature-section">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tech">
+                                        <span class="tech-pill">Python</span>
+                                        <span class="tech-pill">PyTorch</span>
+                                        <span class="tech-pill">scikit-learn</span>
+                                        <span class="tech-pill">SciPy</span>
+                                        <span class="tech-pill">PostgreSQL</span>
+                                        <span class="tech-pill">Plotly</span>
+                                        <span class="tech-pill">Bloomberg Terminal</span>
+                                        <span class="tech-pill">Tableau</span>
+                                        <span class="tech-pill">Streamlit Cloud</span>
+                                        <span class="tech-pill">XGBoost</span>
+                                        <span class="tech-pill">LSTM</span>
+                                        <span class="tech-pill">Portfolio Optimization</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="project-actions">
+                                <a class="project-btn" href="https://github.com/Kapil-Iyer/RiskFecta" target="_blank">
+                                    <i class="fab fa-github"></i> Source
+                                </a>
+                                <button class="project-close-btn" aria-label="Close expanded card">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VectorMate -->
+                    <div class="project-card" data-project="vectormate">
+                        <div class="project-icon">♟️</div>
+                        <div class="project-content">
+                            <h3>VectorMate - Neural Network Driven Chess Engine</h3>
+                            
+                            <!-- Cover State (Default/Hover) -->
+                            <div class="project-cover">
+                                <p class="project-question">Can a neural network learn to play chess like an expert? Watch it think.</p>
+                                <div class="project-cta">See it in action →</div>
+                            </div>
+                            
+                            <!-- Expanded State (On Click) -->
+                            <div class="project-expanded">
+                                <div class="feature-section">
+                                    <h4>Key Features</h4>
+                                    <ul class="feature-list">
+                                        <li><strong>CNN policy network</strong> trained on <strong>20,000+ expert games</strong> (2000+ ELO players)</li>
+                                        <li>Aiming to achieve <strong>30%+ top-1 move prediction accuracy</strong> on unseen positions</li>
+                                        <li><strong>Minimax search</strong> with <strong>Alpha-Beta pruning</strong> for efficient move selection</li>
+                                        <li><strong>3-4 ply search depth</strong> with <strong>sub-5-second</strong> move generation</li>
+                                        <li>Full-stack deployment: <strong>Flask API</strong> + web frontend + <strong>Hugging Face</strong> model hosting</li>
+                                    </ul>
+                                </div>
+
+                                <!-- NEW: Project Links -->
+                                <div class="project-links">
+                                    <a href="https://github.com/Kapil-Iyer/VectorMate" target="_blank" class="project-link">
+                                        <i class="fab fa-github"></i> Source
+                                    </a>
+                                </div>
+                                
+                                <div class="feature-divider"></div>
+                                
+                                <div class="feature-section">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tech">
+                                        <span class="tech-pill">Python</span>
+                                        <span class="tech-pill">PyTorch</span>
+                                        <span class="tech-pill">Flask</span>
+                                        <span class="tech-pill">Hugging Face</span>
+                                        <span class="tech-pill">Render</span>
+                                        <span class="tech-pill">Vercel</span>
+                                        <span class="tech-pill">CNNs</span>
+                                        <span class="tech-pill">Minimax</span>
+                                        <span class="tech-pill">Alpha-Beta Pruning</span>
+                                        <span class="tech-pill">Game AI</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="project-actions">
+                                <a class="project-btn" href="https://github.com/Kapil-Iyer/VectorMate" target="_blank">
+                                    <i class="fab fa-github"></i> Source
+                                </a>
+                                <button class="project-close-btn" aria-label="Close expanded card">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Website -->
+                    <div class="project-card" data-project="portfolio">
+                        <div class="project-icon">🌐</div>
+                        <div class="project-content">
+                            <h3>Personal Portfolio Website</h3>
+                            
+                            <!-- Cover State (Default/Hover) -->
+                            <div class="project-cover">
+                                <p class="project-question">What makes a developer portfolio stand out in 2026?</p>
+                                <div class="project-cta">Take a look →</div>
+                            </div>
+                            
+                            <!-- Expanded State (On Click) -->
+                            <div class="project-expanded">
+                                <div class="feature-section">
+                                    <h4>Key Features</h4>
+                                    <ul class="feature-list">
+                                        <li>Fully responsive design with <strong>mobile-first</strong> approach</li>
+                                        <li>Interactive experience timeline with smooth animations</li>
+                                        <li><strong>Semantic HTML5</strong> and modern <strong>CSS3</strong> (flexbox, grid, custom properties)</li>
+                                        <li>Lightweight <strong>vanilla JavaScript</strong> - no framework bloat</li>
+                                        <li>Optimized for performance and accessibility</li>
+                                    </ul>
+                                </div>
+
+                                <!-- NEW: Project Links -->
+                                <div class="project-links">
+                                    <a href="https://github.com/Kapil-Iyer/kapil-iyer-portfolio" target="_blank" class="project-link">
+                                        <i class="fab fa-github"></i> Source
+                                    </a>
+                                </div>
+                                
+                                <div class="feature-divider"></div>
+
+                                <div class="feature-section">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tech">
+                                        <span class="tech-pill">HTML</span>
+                                        <span class="tech-pill">CSS</span>
+                                        <span class="tech-pill">JavaScript</span>
+                                        <span class="tech-pill">Responsive Design</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="project-actions">
+                                <a class="project-btn" href="https://github.com/Kapil-Iyer/kapil-iyer-portfolio" target="_blank">
+                                    <i class="fab fa-github"></i> Source
+                                </a>
+                                <button class="project-close-btn" aria-label="Close expanded card">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <button class="carousel-nav carousel-next" aria-label="Next project">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
-    </section>
+
+        <!-- Progress Indicators -->
+        <div class="carousel-indicators" id="carouselIndicators" aria-label="Project navigation">
+            <button class="indicator active" data-index="0" aria-label="Go to project 1"></button>
+            <button class="indicator" data-index="1" aria-label="Go to project 2"></button>
+            <button class="indicator" data-index="2" aria-label="Go to project 3"></button>
+            <button class="indicator" data-index="3" aria-label="Go to project 4"></button>
+        </div>
+    </div>
+</section>
 
     <!-- Skills & Certifications -->
     <section id="skills" class="section skills">
@@ -2956,16 +3526,7 @@
             });
         });
 
-        // Enhanced hover effects for project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-12px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+        // Hover effects are handled by CSS
 
         // Debug and enhance project links
         document.querySelectorAll('.project-link').forEach(link => {
@@ -3053,6 +3614,300 @@
                 hero.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
         });
+
+        // Projects Carousel Functionality
+        (function() {
+            const track = document.getElementById('projectsTrack');
+            const carousel = document.getElementById('projectsCarousel');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            const cards = document.querySelectorAll('.project-card');
+            
+            if (!track || !carousel) return;
+            
+            let currentIndex = 0;
+            let isDragging = false;
+            let startX = 0;
+            let scrollLeft = 0;
+            let animationId = null;
+            
+            const cardWidth = 400; // Base card width
+            const gap = 32; // Gap between cards (2rem = 32px)
+            const cardWidthWithGap = cardWidth + gap;
+            
+            // Update carousel position
+            function updateCarousel() {
+                const offset = -currentIndex * cardWidthWithGap;
+                track.style.transform = `translateX(${offset}px)`;
+                updateIndicators();
+            }
+            
+            // Update indicators
+            function updateIndicators() {
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                if (index < 0) index = cards.length - 1;
+                if (index >= cards.length) index = 0;
+                currentIndex = index;
+                updateCarousel();
+            }
+            
+            // Next slide
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+            
+            // Snap to nearest card
+            function snapToCard() {
+                const trackRect = track.getBoundingClientRect();
+                const carouselRect = carousel.getBoundingClientRect();
+                const centerX = carouselRect.left + carouselRect.width / 2;
+                
+                let closestIndex = 0;
+                let closestDistance = Infinity;
+                
+                cards.forEach((card, index) => {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardCenterX = cardRect.left + cardRect.width / 2;
+                    const distance = Math.abs(centerX - cardCenterX);
+                    
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestIndex = index;
+                    }
+                });
+                
+                goToSlide(closestIndex);
+            }
+            
+            // Expand/Collapse functionality
+            let expandedCard = null;
+            
+            function expandCard(card) {
+                // Collapse any previously expanded card
+                if (expandedCard && expandedCard !== card) {
+                    collapseCard(expandedCard);
+                }
+                
+                card.classList.add('expanded');
+                expandedCard = card;
+                
+                // Scroll expanded card into view
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }, 100);
+            }
+            
+            function collapseCard(card) {
+                card.classList.remove('expanded');
+                if (expandedCard === card) {
+                    expandedCard = null;
+                }
+            }
+            
+            // Card click handler - expand instead of navigate
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't expand if clicking on links or buttons
+                    if (e.target.closest('a') || e.target.closest('button')) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (card.classList.contains('expanded')) {
+                        collapseCard(card);
+                    } else {
+                        expandCard(card);
+                    }
+                });
+                
+                // Close button handler
+                const closeBtn = card.querySelector('.project-close-btn');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        collapseCard(card);
+                    });
+                }
+            });
+            
+            // Click outside to collapse
+            document.addEventListener('click', (e) => {
+                if (expandedCard && !expandedCard.contains(e.target) && !e.target.closest('.carousel-nav')) {
+                    collapseCard(expandedCard);
+                }
+            });
+            
+            // Mouse drag functionality (only when not clicking on cards)
+            let dragStartX = 0;
+            let dragStartY = 0;
+            let isDrag = false;
+            
+            function handleMouseDown(e) {
+                // Don't start drag if clicking on a card or its children
+                if (e.target.closest('.project-card')) {
+                    return;
+                }
+                
+                isDragging = true;
+                dragStartX = e.pageX;
+                dragStartY = e.pageY;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                track.style.cursor = 'grabbing';
+                track.style.transition = 'none';
+                carousel.style.cursor = 'grabbing';
+            }
+            
+            function handleMouseMove(e) {
+                if (!isDragging) return;
+                
+                const deltaX = Math.abs(e.pageX - dragStartX);
+                const deltaY = Math.abs(e.pageY - dragStartY);
+                
+                // Only drag if horizontal movement is greater than vertical (swipe)
+                if (deltaX > deltaY && deltaX > 5) {
+                    e.preventDefault();
+                    const x = e.pageX - track.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    track.style.transform = `translateX(${-currentIndex * cardWidthWithGap + walk}px)`;
+                    isDrag = true;
+                }
+            }
+            
+            function handleMouseUp() {
+                if (!isDragging) return;
+                isDragging = false;
+                track.style.cursor = 'grab';
+                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                carousel.style.cursor = 'default';
+                
+                // Only snap if it was actually a drag, not a click
+                if (isDrag) {
+                    snapToCard();
+                }
+                isDrag = false;
+            }
+            
+            // Touch swipe functionality
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            function handleTouchStart(e) {
+                touchStartX = e.touches[0].clientX;
+            }
+            
+            function handleTouchMove(e) {
+                touchEndX = e.touches[0].clientX;
+            }
+            
+            function handleTouchEnd() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+            }
+            
+            // Event listeners
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            
+            // Indicator clicks
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => goToSlide(index));
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const projectsSection = document.getElementById('projects');
+                if (!projectsSection) return;
+                
+                const rect = projectsSection.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (!isInView) return;
+                
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevSlide();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextSlide();
+                }
+            });
+            
+            // Mouse drag (only on track background, not cards)
+            carousel.addEventListener('mousedown', handleMouseDown);
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+            
+            // Touch swipe
+            track.addEventListener('touchstart', handleTouchStart, { passive: true });
+            track.addEventListener('touchmove', handleTouchMove, { passive: true });
+            track.addEventListener('touchend', handleTouchEnd);
+            
+            // Smooth scroll on wheel
+            let wheelTimeout;
+            carousel.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                clearTimeout(wheelTimeout);
+                
+                wheelTimeout = setTimeout(() => {
+                    if (e.deltaY > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }, 150);
+            }, { passive: false });
+            
+            // Responsive card width calculation
+            function updateCardWidth() {
+                const width = window.innerWidth;
+                if (width <= 480) return 280;
+                if (width <= 768) return 320;
+                if (width <= 1024) return 350;
+                return 400;
+            }
+            
+            // Update on resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const newWidth = updateCardWidth();
+                    const newGap = 32;
+                    const newCardWidthWithGap = newWidth + newGap;
+                    const offset = -currentIndex * newCardWidthWithGap;
+                    track.style.transform = `translateX(${offset}px)`;
+                }, 250);
+            });
+            
+            // Initialize
+            updateCarousel();
+            
+            // Tech pills hover animation is handled by CSS
+        })();
     </script>
     
     <!-- EmailJS CDN -->
