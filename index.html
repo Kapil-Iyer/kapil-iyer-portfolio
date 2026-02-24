@@ -2151,7 +2151,7 @@
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="https://drive.google.com/file/d/1E28OhEEVwSsBy0Xg-PxqwkxtBhjb3nf5/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
+                    <a href="https://drive.google.com/file/d/1038ITMxPLUn3pupnPsgRXM5GK1BtStMV/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
                         <i class="fas fa-file-pdf"></i> View Resume
                     </a>
                 </div>
@@ -2344,7 +2344,7 @@
                         </div>
                         
                         <div style="margin-top: 2rem;">
-                            <a href="https://drive.google.com/file/d/1E28OhEEVwSsBy0Xg-PxqwkxtBhjb3nf5/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
+                            <a href="https://drive.google.com/file/d/1038ITMxPLUn3pupnPsgRXM5GK1BtStMV/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
                                 <i class="fas fa-file-pdf"></i> View Resume (PDF)
                             </a>
                         </div>
@@ -2589,12 +2589,12 @@
                         to model rolling correlation structures and volatility spillovers across 
                         <strong>S&P 500 assets</strong>.
                     </li>
-                    <li> Benchmarking <strong>Graph Attention Network</strong> predictions against <strong>GARCH</strong> and <strong>HAR-RV</strong> econometric baselines using <strong>RMSE</strong> and <strong>Diebold-Mariano tests</strong>.</li>   
+                    <li> Developing rolling-window training pipeline with <strong>MSE loss</strong> and gradient verification, targeting <strong> at least 10% RMSE </strong>improvement over GARCH and HAR-RV baselines across <strong>1, 3, and 5-day</strong> prediction horizons.</li>   
                     <li>Implementing <strong>rolling-window training and evaluation</strong> pipelines 
                         to avoid look-ahead bias and assess model stability under different market regimes.
                     </li>
                     <li>Applying <strong>sparse covariance estimation</strong> techniques 
-                        (Graphical Lasso) to analyze dynamic inter-asset dependency graphs during 
+                        (Graphical Lasso) to analyze dynamic inter-asset dependency graphs during
                         periods of elevated market stress.
                     </li>
                 </ul>
@@ -2664,16 +2664,12 @@
                 <h4><i class="fas fa-star"></i>Key Achievements:</h4>
                 <ul>
                     <li>Expanded a RAG system processing <strong>1,500+ pages</strong> of CSC and IFIC
-                        certification content using <strong>Google Gemini 2.5 Flash</strong> and
-                        <strong>ChromaDB</strong> to generate grounded exam questions and explanations.
+                        certification content <strong>(about 1600 embeddings</strong> per dataset) in <strong>ChromaDB</strong>, <strong>Dockerizing</strong> the vector store with persistent storage.
                     </li>
-                    <li>Built <strong>Express.js REST APIs</strong> and a <strong>React frontend</strong>,
-                        implementing <strong>CORS</strong> and rate-limiting to enforce freemium usage
+                    <li>Architected <strong>8 Express.js REST APIs</strong> with <strong>CORS</strong> and <strong>rate limiting</strong> for scalable multi-user AI tutoring and to enforce freemium usage
                         constraints in a production environment.
                     </li>
-                    <li>Reduced LLM token usage by approximately <strong>30%</strong> through prompt
-                        engineering and retrieval optimization, deploying a containerized vector
-                        store using <strong>Docker</strong>.
+                    <li>Implemented a <strong>20-interaction</strong> per service <strong>freemium cap</strong> aligned with cost modeling and reduced <strong>Gemini 2.5 Flash API</strong> inference costs by <strong>30%</strong> through retrieval optimization, integrating backend with <strong>React</strong> frontend.
                     </li>
                     <li>Structured end-to-end pipelines spanning document ingestion, embedding,
                         retrieval, and response generation with a focus on reliability,

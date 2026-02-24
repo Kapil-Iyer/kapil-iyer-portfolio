@@ -74,15 +74,11 @@ php -S localhost:8000
 
 ```
 kapil-iyer-portfolio/
-├── index.html              # Main portfolio page
-├── resume.pdf              # Downloadable resume
+├── index.html              # Main portfolio page           
 ├── README.md               # Project documentation
 ├── images/                 # Portfolio images
 │   ├── hero-image.png     # Hero section image
 │   └── profile-photo.jpeg # Profile photo
-├── data/                   # Dynamic content
-│   ├── experience.json    # Experience data
-│   └── projects.json      # Projects data
 └── package.json            # Project dependencies
 ```
 
