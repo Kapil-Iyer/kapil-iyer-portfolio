@@ -1058,11 +1058,22 @@
         .timeline-tag {
             background: rgba(16,185,129,.12);
             color: var(--accent);
-            border: 1px solid rgba(16,185,129,.25);
+            border: 1px solid rgba(16, 185, 129, .25);
             padding: .35rem .7rem;
             border-radius: 999px;
             font-size: .78rem;
             font-weight: 600;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+        /* Learn More must sit below tags, not inside the flex row */
+        .timeline-hover-drawer > .drawer-learn-more {
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            width: 100%;
         }
 
         /* Hover Bottom Drawer Expansion - Option C */
@@ -2151,7 +2162,7 @@
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="https://drive.google.com/file/d/1038ITMxPLUn3pupnPsgRXM5GK1BtStMV/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
+                    <a href="https://drive.google.com/file/d/1Yqbv1bCdIxKbjeTOp8UStGWOPWIYTBGu/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
                         <i class="fas fa-file-pdf"></i> View Resume
                     </a>
                 </div>
@@ -2344,7 +2355,7 @@
                         </div>
                         
                         <div style="margin-top: 2rem;">
-                            <a href="https://drive.google.com/file/d/1038ITMxPLUn3pupnPsgRXM5GK1BtStMV/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
+                            <a href="https://drive.google.com/file/d/1Yqbv1bCdIxKbjeTOp8UStGWOPWIYTBGu/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
                                 <i class="fas fa-file-pdf"></i> View Resume (PDF)
                             </a>
                         </div>
@@ -2400,10 +2411,76 @@
             <div class="timeline" id="timeline">
                 <div class="timeline-progress" style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:3px;height:0;background:linear-gradient(to bottom, var(--primary), var(--accent));border-radius:2px;"></div>
                 
-                <!-- Item 1: WatStreet = UWaterloo's Quantitative Finance Design Team -->
+                <!-- Item: Ibreeze Academy -->
+                <div class="timeline-item" data-tip="Full-stack AI systems for exam prep and student operations! 🎓">
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-content" data-modal="modal-ibreeze">
+                        <h3>Ibreez Academy Inc.</h3>
+                        <span class="role">AI Product Engineer Intern</span>
+                        <span class="period">May 2026 - Present</span>
+                        <div class="drawer-learn-more">
+                            <span class="drawer-learn-more-btn">
+                                Come find out!
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                        <div class="timeline-hover-drawer">
+                            <p class="description">Solo-built full-stack student management system and RAG-based AI tutoring pipelines for a professional licensing exam prep school serving 3,000+ students across 27 course types.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Python</span>
+                            <span class="timeline-tag">Streamlit</span>
+                            <span class="timeline-tag">Supabase</span>
+                            <span class="timeline-tag">RAG</span>
+                            <span class="timeline-tag">Gemini API</span>
+                            <span class="timeline-tag">Full-Stack</span>
+                        </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Learn More
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item: Paideia Mundi -->
+                <div class="timeline-item" data-tip="ML research for children's neurodevelopmental health! 🧠">
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-content" data-modal="modal-paideia">
+                        <h3>Paideia Mundi NeuroSystems Institute</h3>
+                        <span class="role">AI/ML Engineer Intern (NDA-Protected)</span>
+                        <span class="period">March 2026 - May 2026</span>
+                        <div class="drawer-learn-more">
+                            <span class="drawer-learn-more-btn">
+                                Come find out!
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                        <div class="timeline-hover-drawer">
+                            <p class="description">Contributed to a confidential multimodal ML research prototype supporting children's neurodevelopmental health, applying EEG signal processing and regression modeling to predict infant attention markers.</p>
+                            <div class="timeline-tags">
+                                <span class="timeline-tag">Python</span>
+                                <span class="timeline-tag">MNE-Python</span>
+                                <span class="timeline-tag">scikit-learn</span>
+                                <span class="timeline-tag">EEG</span>
+                                <span class="timeline-tag">Research ML</span>
+                                <span class="timeline-tag">pytest</span>
+                            </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Learn More
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: WatStreet = UWaterloo's Quantitative Finance Design Team -->
                 <div class="timeline-item" data-tip="Quant ML research on market volatility contagion! 📈">
                     <div class="timeline-date">2026</div>
-                    <div class="timeline-content" data-modal="modal-1">
+                    <div class="timeline-content" data-modal="modal-3">
                         <h3>WatStreet - Uwaterloo's Quantitative Finance Design Team</h3>
                         <span class="role">ML Engineer - Volatility Contagion Explorer</span>
                         <span class="period">January 2026 - Present</span>
@@ -2421,22 +2498,21 @@
                                 <span class="timeline-tag">Time Series</span>
                                 <span class="timeline-tag">Risk Modeling</span>
                                 <span class="timeline-tag">Statistical ML</span>
-
-                                <div class="drawer-learn-more">
-                                    <span class="drawer-learn-more-btn">
-                                        Learn More
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
+                            </div>
+                            <div class="drawer-learn-more">
+                                <span class="drawer-learn-more-btn">
+                                    Learn More
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Item 2: Dazia Consulting -->
+                <!-- Item 4: Dazia Consulting -->
                 <div class="timeline-item" data-tip="Building AI tutor for Canadian finance! 🤖">
                     <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-2">
+                    <div class="timeline-content" data-modal="modal-4">
                         <h3>Dazia Consulting Inc.</h3>
                         <span class="role">AI Engineer</span>
                         <span class="period">November 2025 - January 2026</span>
@@ -2468,10 +2544,10 @@
                     </div>
                 </div>
 
-                <!-- Item 3: DSC Outreach -->
+                <!-- Item 5: DSC Outreach -->
                 <div class="timeline-item" data-tip="Leading CxC 2026! 🚀">
                     <div class="timeline-date">2025</div>
-                    <div class="timeline-content" data-modal="modal-3">
+                    <div class="timeline-content" data-modal="modal-5">
                         <h3>UW Data Science Club</h3>
                         <span class="role">Outreach Coordinator</span>
                         <span class="period">September 2025 - Present</span>
@@ -2500,10 +2576,10 @@
                 </div>
 
                 
-                <!-- Item 4: STEAM Change -->
+                <!-- Item 6: STEAM Change -->
                 <div class="timeline-item" data-tip="Inspiring young minds ✨">
                     <div class="timeline-date">2023</div>
-                    <div class="timeline-content" data-modal="modal-4">
+                    <div class="timeline-content" data-modal="modal-6">
                         <h3>STEAM Change Mentorship Program</h3>
                         <span class="role">Youth Lead Mentor</span>
                         <span class="period">September 2023 - June 2024</span>
@@ -2530,10 +2606,10 @@
                     </div>
                 </div>
                         
-                <!-- Item 5: Code Krafters -->
+                <!-- Item 7: Code Krafters -->
                 <div class="timeline-item" data-tip="Built a coding community 💡">
                     <div class="timeline-date">2023</div>
-                    <div class="timeline-content" data-modal="modal-5">
+                    <div class="timeline-content" data-modal="modal-7">
                         <h3>Code Krafters: Clarkson Coding Club</h3>
                         <span class="role">Founder & President</span>
                         <span class="period">September 2023 - June 2024</span>
@@ -2565,10 +2641,86 @@
 
     <!-- Experience Modals -->
     
-    <!-- Modal 1:  WatStreet -->
-    <div class="experience-modal" id="modal-1">
+    <!-- Modal: Ibreeze -->
+    <div class="experience-modal" id="modal-ibreeze">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-1')">
+            <button class="modal-close" onclick="closeModal('modal-ibreeze')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Ibreez Academy Inc.</h3>
+                <span class="modal-role">AI Product Engineer Intern</span>
+                <span class="modal-period">May 2026 - Present</span>
+            </div>
+            <p class="modal-description">Developing a solo-built internal operations platform and AI tutoring systems for a professional licensing exam prep school serving 3,000+ students across 27 course types in Mississauga, Ontario, replacing a fully paper-based student management workflow with digital infrastructure.</p>
+            <div class="modal-achievements">
+                <h4><i class="fas fa-star"></i>Key Contributions:</h4>
+                <ul>
+                    <li>Architecting SIRS, a solo full-stack student management system with <strong>digital registration, attendance tracking</strong>, and <strong>automated daily PDF reporting</strong> via ReportLab, targeting <strong>95%+ reduction</strong> in student lookup time</li>
+                    <li>Developing <strong>RAG-based AI tutoring pipelines</strong> (Gemini API, ChromaDB) for <strong>RIBO and LLQP</strong> exam prep, targeting 24/7 student support and reduced instructor workload</li>
+                    <li>Eliminating a <strong>30-min manual daily reporting process</strong> through automated PDF generation and a <strong>4-table Supabase PostgreSQL</strong> schema with FK relationships and partial unique indexes</li>
+                </ul>
+            </div>
+            <div class="modal-skills">
+                <h4>Skills & Tools Used:</h4>
+                <div class="modal-skill-tags">
+                    <span class="modal-skill-tag">Python</span>
+                    <span class="modal-skill-tag">Streamlit</span>
+                    <span class="modal-skill-tag">Supabase</span>
+                    <span class="modal-skill-tag">PostgreSQL</span>
+                    <span class="modal-skill-tag">Gemini API</span>
+                    <span class="modal-skill-tag">ChromaDB</span>
+                    <span class="modal-skill-tag">ReportLab</span>
+                    <span class="modal-skill-tag">Express.js</span>
+                    <span class="modal-skill-tag">Plotly</span>
+                    <span class="modal-skill-tag">pandas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Paideia Mundi -->
+    <div class="experience-modal" id="modal-paideia">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-paideia')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Paideia Mundi NeuroSystems Institute</h3>
+                <span class="modal-role">AI/ML Engineer Intern (NDA-Protected)</span>
+                <span class="modal-period">March 2026 - May 2026</span>
+            </div>
+            <p class="modal-description">Contributed to a confidential multimodal ML research prototype supporting children's neurodevelopmental health through the Government of Canada's Riipen Level UP program. Applied EEG signal processing and regression modeling to predict infant attention markers from resting-state brain data.</p>
+            <div class="modal-achievements">
+                <h4><i class="fas fa-star"></i>Key Contributions:</h4>
+                <ul>
+                    <li>Engineered <strong>EEG connectivity features</strong> and a custom <strong>scikit-learn compatible feature selector</strong> with non-parametric ranking and multi-target selection logic</li>
+                    <li>Validated all contributions through a full <strong>pytest test suite</strong> committed to the team repository</li>
+                    <li>Conducted <strong>literature review</strong> grounding feature engineering in peer-reviewed neuroscience methodology</li>
+                    <li>Delivered <strong>stakeholder presentation</strong> covering feature engineering approach and research findings to institute leadership</li>
+                </ul>
+            </div>
+            <div class="modal-skills">
+                <h4>Skills & Tools Used:</h4>
+                <div class="modal-skill-tags">
+                    <span class="modal-skill-tag">Python</span>
+                    <span class="modal-skill-tag">MNE-Python</span>
+                    <span class="modal-skill-tag">scikit-learn</span>
+                    <span class="modal-skill-tag">NumPy</span>
+                    <span class="modal-skill-tag">SciPy</span>
+                    <span class="modal-skill-tag">pytest</span>
+                    <span class="modal-skill-tag">Git</span>
+                    <span class="modal-skill-tag">GitHub</span>
+                </div>
+            </div>
+            <p><em>Details confidential per NDA.</em></p>
+        </div>
+    </div>
+
+    <!-- Modal 3:  WatStreet -->
+    <div class="experience-modal" id="modal-3">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-3')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
@@ -2620,10 +2772,10 @@
         </div>
     </div>
 
-    <!-- Modal 2:  Dazia Consulting -->
-    <div class="experience-modal" id="modal-2">
+    <!-- Modal 4:  Dazia Consulting -->
+    <div class="experience-modal" id="modal-4">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-2')">
+            <button class="modal-close" onclick="closeModal('modal-4')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
@@ -2696,10 +2848,10 @@
         </div>
     </div>
     
-    <!-- Modal 3: UW Data Science Club - Outreach -->
-    <div class="experience-modal" id="modal-3">
+    <!-- Modal 5: UW Data Science Club - Outreach -->
+    <div class="experience-modal" id="modal-5">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-3')">
+            <button class="modal-close" onclick="closeModal('modal-5')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
@@ -2749,10 +2901,10 @@
         </div>
     </div>
     
-    <!-- Modal 4: STEAM Change -->
-    <div class="experience-modal" id="modal-4">
+    <!-- Modal 6: STEAM Change -->
+    <div class="experience-modal" id="modal-6">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-4')">
+            <button class="modal-close" onclick="closeModal('modal-6')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
@@ -2787,10 +2939,10 @@
         </div>
     </div>
                 
-    <!-- Modal 5: Code Krafters -->
-    <div class="experience-modal" id="modal-5">
+    <!-- Modal 7: Code Krafters -->
+    <div class="experience-modal" id="modal-7">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal-5')">
+            <button class="modal-close" onclick="closeModal('modal-7')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-header">
